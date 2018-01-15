@@ -10,7 +10,7 @@ $SYSTEM_COMPANY_NAME = "メタウォーター";
 //サーバ環境別の定数定義インクルード
 //$CONFIG_FILE = str_replace(":","_",$HTTP_HOST) . ".conf";
 //$CONFIG_FILE = $SERVER_ADDR."_".$SERVER_PORT.".conf"; 172.20.108.34_80
-$CONFIG_FILE = '172.20.108.34_80' . '.conf';
+$CONFIG_FILE = "127.0.0.1"."_".$SERVER_PORT.".conf";
 // $INC_REL_PATHはenv.incで定義済み
 require("$INC_REL_PATH/$CONFIG_FILE");
 //ディレクトリ別の定数定義インクルード
@@ -91,7 +91,7 @@ function CustomErrorHandler($errno, $errmsg, $filename, $linenum, $vars){
 set_error_handler("CustomErrorHandler");
 
 //GETリクエストの防御(クッキーにユーザIDがない場合GETリクエストは制限される)
-require_once("$COMMON_BASE_PATH/../AUTH/check_get_method.php");
+//require_once("$COMMON_BASE_PATH/../AUTH/check_get_method.php");
 if( $_COOKIE["COOKIE_LOGIN_ID"] != "" ){
 	//if( $_SERVER["REQUEST_METHOD"] == "GET" ){
 		//クッキーにユーザIDがある場合、GET/POSTされたユーザIDを上書きする
@@ -383,7 +383,7 @@ Class SelectTag Extends BaseObject{
 
 //--------------------------------------------------------------------
 //ログ記録共通関数インクルード
-require("logwriter_helper.inc");
+//require("logwriter_helper.inc");
 function CMN_LogEntry($log_type,$ary_user,$ary_class,$ary_operation,$ary_additional=""){
 	CMN_log($GLOBALS["COMMON_LOG_WRITER_URL"],"project",$log_type,$ary_user,$ary_class,$ary_operation,$ary_additional);
 }

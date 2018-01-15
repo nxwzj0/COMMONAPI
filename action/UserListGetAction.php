@@ -27,9 +27,9 @@ class UserListGetAction extends CommonAction {
         $P = $GLOBALS[P]; // 共通パラメータ配列取得
         // 画面からパラメータ取得
         $userNmSei = $P['userNmSei'];
-		$userNmMei = $P['userNmMei'];
-		$sectionCd = $P['sectionCd'];
-		$sectionNm = $P['sectionNm'];
+        $userNmMei = $P['userNmMei'];
+        $sectionCd = $P['sectionCd'];
+        $sectionNm = $P['sectionNm'];
 
         /* Dto作成処理 */
         $userListGetDto = new UserListGetDto();

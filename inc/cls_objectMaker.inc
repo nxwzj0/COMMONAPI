@@ -1,5 +1,5 @@
 <?php // autotool_migration 20121210120958 このファイルは自動化ツールにより編集されました ?>
-<?php require_once('ADFlib/global_reg_emu.inc.php'); ?>
+<?php //require_once('ADFlib/global_reg_emu.inc.php'); ?>
 <?php
 class ObjectMaker{
 	var $attr = array();

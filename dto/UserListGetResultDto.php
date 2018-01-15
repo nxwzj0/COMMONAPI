@@ -15,7 +15,7 @@ require_once('./dto/CommonDto.php');
  * @property UserDto[] $userList
  */
 class UserListGetResultDto extends CommonDto{
-
+    
     private $userList = array();
  
      /**

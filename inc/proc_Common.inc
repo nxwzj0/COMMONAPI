@@ -1,6 +1,6 @@
 <?php // autotool_migration Ver2 20121214075930 このファイルは自動化ツールにより編集されました ?>
-<?php require_once('ADFlib/func_Common.inc.php'); ?>
-<?php require_once('ADFlib/global_reg_emu.inc.php'); ?>
+<?php //require_once('ADFlib/func_Common.inc.php'); ?>
+<?php //require_once('ADFlib/global_reg_emu.inc.php'); ?>
 <?php
 //SQLを実行して、最初の1行を連想配列で返す
 function CMN_GetSqlFirstResult($sql,$username="",$passwd="",$server="",$vars=""){
