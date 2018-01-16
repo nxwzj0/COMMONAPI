@@ -12,7 +12,7 @@ require_once("./env.inc");
 require_once("./common/CommonService.php");
 
 // Action処理読み込み
-require_once("./action/UserListGetAction.php");
+require_once("./action/DeptListGetAction.php");
 
 // 共通処理
 $common = new CommonService();
@@ -28,6 +28,6 @@ $rtnAry = array();
 //    exit;
 //}
 
-$userListGetAction = new UserListGetAction();
-$userListGetAction->index();
+$deptListGetAction = new DeptListGetAction();
+$deptListGetAction->index();
 exit;
