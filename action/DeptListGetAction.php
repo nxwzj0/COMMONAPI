@@ -47,7 +47,7 @@ class DeptListGetAction extends CommonAction {
         echo $this->returnAngularJSONP($rtnAry);
     }
     
-    public function createReturnArray($eventResult) {
+    public function createReturnArray(DeptListGetResultDto $eventResult) {
         $deptListAry = array();
         
         // 戻り値の作成
