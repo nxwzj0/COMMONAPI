@@ -2,8 +2,8 @@
 //*****************************************************************************
 //	システム名　　　：共通DBAPI
 //	サブシステム名　：
-//	処理名　　　　　：ユーザ情報取得処理
-//	作成日付・作成者：2018.01.09 ADF)S.Yoshida
+//	処理名　　　　　：インシデント情報取得処理
+//	作成日付・作成者：2018.01.18 newtouch
 //	修正履歴　　　　：
 //*****************************************************************************
 // 共通処理読み込み
@@ -19,6 +19,13 @@ require_once('./logic/IncidentListGetLogic.php');
 
 class IncidentListGetAction extends CommonAction {
 
+    /**
+     * チェックボックスの状態に応じて検索条件を作成する
+     * @param type $result 結果
+     * @param type $param チェックボックスの状態
+     * @param type $val 対応する値
+     * @return string
+     */
     public function madeCheckboxCondtion($result,$param,$val){
         if($param == null || $param == "" || $param == "false"){
             return $result;
@@ -83,12 +90,14 @@ class IncidentListGetAction extends CommonAction {
                 foreach ($eventResult->getIncidentList() as $incident) {
                     $incidentAry = array();
  
-                    // インシデント情報 data?.incidentNo, data?.memo, data?.callDate, data?.incidentType, data?.incidentStatus
+                    // インシデント情報
                     $incidentAry["incidentNo"] = $incident->getIncidentNo();
                     $incidentAry["callContent"] = $incident->getCallContent();
                     $incidentAry["callDate"] = $incident->getCallDate();
                     $incidentAry["incidentType"] = $incident->getIncidentType();
+                    $incidentAry["incidentTypeString"] = $incident->getIncidentTypeString();
                     $incidentAry["incidentStatus"] = $incident->getIncidentStatus();
+                    $incidentAry["incidentStatusString"] = $incident->getIncidentStatusString();
                     // 1件分の情報をセット
                     array_push($incidentListAry, $incidentAry);
                 }

@@ -1,12 +1,4 @@
 <?php
-//*****************************************************************************
-//	システム名　　　：共通DBAPI
-//	サブシステム名　：
-//	処理名　　　　　：DeptListDataGetDto
-//	作成日付・作成者：2018.01.09 ADF)S.Yoshida
-//	修正履歴　　　　：
-//*****************************************************************************
-
 require_once('./dto/CommonDto.php');
 
 /**
@@ -15,11 +7,17 @@ require_once('./dto/CommonDto.php');
  */
 class IncidentListGetDto extends CommonDto{
  
+    /** インシデント番号 */
     private $incidentNo;
+    /** 受付内容 */
     private $callContent;
+    /** 受付日 */
     private $callDate;
+    /** 受付開始時刻 */
     private $callStartDateFrom;
+    /** 受付終了時刻 */
     private $callStartDateTo;
+    /** インシデント分類 */
     private $incidentType;
     private $incidentType1;
     private $incidentType2;
@@ -27,6 +25,7 @@ class IncidentListGetDto extends CommonDto{
     private $incidentType4;
     private $incidentType5;
     private $incidentType6;
+    /** ステータス */
     private $incidentStatus;
     private $incidentStatus1;
     private $incidentStatus2;

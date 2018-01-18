@@ -19,15 +19,15 @@ require_once('./dto/IncidentListGetDto.php');
 require_once('./dto/IncidentListGetResultDto.php');
 
 /**
- * Proj service
+ * Incident service
  */
 class IncidentListGetLogic extends CommonLogic {
 
     public function execute(IncidentListGetDto $incidentListGetDto) {
-        // 戻りオブジェクト(ProjListGetResultDto)を作成
+        // 戻りオブジェクト(IncidentListGetResultDto)を作成
         $incidentListGetResultDto = new IncidentListGetResultDto();
 
-        // deptListGetDtoから、パラメータを取得する、$conditionsを作成
+        // IncidentListGetDtoから、パラメータを取得する、$conditionsを作成
         $conditions = array();
         $conditions['incidentNo'] = $incidentListGetDto->getIncidentNo();
         $conditions['callContent'] = $incidentListGetDto->getCallContent();
@@ -43,13 +43,13 @@ class IncidentListGetLogic extends CommonLogic {
         } catch (Exception $e) {
             // LOGIC結果　SQLエラー '1' をセット
             $IncidentGetResultDto->setLogicResult(LOGIC_RESULT_SQL_ERROR);
-            // 戻りオブジェクト(UserListGetResultDto)
+            // 戻りオブジェクト(IncidentListGetResultDto)
             return $incidentListGetResultDto;
         }
 
         // 個数分ユーザ情報リストをループ
         foreach ($incidentList as $incidentData) {
-            // projDtoを作成
+            // IncidentDtoを作成
             $incidentDto = new IncidentDto();
 
             // 情報の取得
@@ -58,15 +58,17 @@ class IncidentListGetLogic extends CommonLogic {
             $incidentDto->setCallDate($incidentData["CALL_START_DATE"]);
             $incidentDto->setCallStartDateFrom($incidentData["CALL_START_DATE"]);
             $incidentDto->setCallStartDateTo($incidentData["CALL_END_DATE"]);
-            $incidentDto->setIncidentType($incidentModel->findValueByNameAndKey("INCIDENT_TYPE", $incidentData["INCIDENT_TYPE"]));
-            $incidentDto->setIncidentStatus($incidentModel->findValueByNameAndKey("INCIDENT_STS", $incidentData["INCIDENT_STS"]));
-            // ProjDto⇒ProjListGetResultDtoのセット
+            $incidentDto->setIncidentType($incidentData["INCIDENT_TYPE"]);
+            $incidentDto->setIncidentTypeString($incidentModel->findValueByNameAndKey("INCIDENT_TYPE", $incidentDto->getIncidentType()));
+            $incidentDto->setIncidentStatus($incidentData["INCIDENT_STS"]);
+            $incidentDto->setIncidentStatusString($incidentModel->findValueByNameAndKey("INCIDENT_STS", $incidentDto->getIncidentStatus()));
+            // IncidentDto⇒IncidentListGetResultDtoのセット
             $incidentListGetResultDto->addIncidentList($incidentDto);
         }
 
         // LOGIC結果　正常時 '0' をセット
         $incidentListGetResultDto->setLogicResult(LOGIC_RESULT_SEIJOU);
-        // 戻りオブジェクト(userListGetResultDto)
+        // 戻りオブジェクト(IncidentListGetResultDto)
         return $incidentListGetResultDto;
     }
 

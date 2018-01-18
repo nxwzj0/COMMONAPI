@@ -1,12 +1,4 @@
 <?php
-//*****************************************************************************
-//	システム名　　　：共通DBAPI
-//	サブシステム名　：
-//	処理名　　　　　：ユーザDto
-//	作成日付・作成者：2018.01.09 ADF)S.Yoshida
-//	修正履歴　　　　：
-//*****************************************************************************
-
 require_once('./dto/SectionDto.php');
 
 /**
@@ -15,26 +7,27 @@ require_once('./dto/SectionDto.php');
  */
 class IncidentDto extends SectionDto{
 
-    // INCIDENT_NO
+    /** インシデント番号 */
     private $incidentNo;
-    // CALL_CONTENT
-    private $memo;
+    /** 受付内容 */
     private $callContent;
-    // CALL_START_DATE CALL_END_DATE
+    /** 受付日 */
     private $callDate;
+    /** 受付開始時刻 */
     private $callStartDateFrom;
+    /** 受付終了時刻 */
     private $callStartDateTo;
-    // INCIDENT_TYPE
+    /** インシデント分類 */
     private $incidentType;
-    // INCIDENT_STS
+    /** インシデント分類String */
+    private $incidentTypeString;
+    /** ステータス */
     private $incidentStatus;
+    /** ステータスString */
+    private $incidentStatusString;
     
     public function getIncidentNo() {
         return $this->incidentNo;
-    }
-
-    public function getMemo() {
-        return $this->memo;
     }
 
     public function getCallContent() {
@@ -57,16 +50,20 @@ class IncidentDto extends SectionDto{
         return $this->incidentType;
     }
 
+    public function getIncidentTypeString() {
+        return $this->incidentTypeString;
+    }
+
     public function getIncidentStatus() {
         return $this->incidentStatus;
     }
 
-    public function setIncidentNo($incidentNo) {
-        $this->incidentNo = $incidentNo;
+    public function getIncidentStatusString() {
+        return $this->incidentStatusString;
     }
 
-    public function setMemo($memo) {
-        $this->memo = $memo;
+    public function setIncidentNo($incidentNo) {
+        $this->incidentNo = $incidentNo;
     }
 
     public function setCallContent($callContent) {
@@ -89,9 +86,15 @@ class IncidentDto extends SectionDto{
         $this->incidentType = $incidentType;
     }
 
+    public function setIncidentTypeString($incidentTypeString) {
+        $this->incidentTypeString = $incidentTypeString;
+    }
+
     public function setIncidentStatus($incidentStatus) {
         $this->incidentStatus = $incidentStatus;
     }
 
-
+    public function setIncidentStatusString($incidentStatusString) {
+        $this->incidentStatusString = $incidentStatusString;
+    }
 }

@@ -63,21 +63,8 @@ SQL_USER_INFO;
 
         $MultiExecSql = new MultiExecSql();
         $sqlResult = array();
-        $this->console_log(array("IncidentModel.getIncidentList()", $SQL_TEST_INFO,$conditions));
         $MultiExecSql->getResultData($SQL_USER_INFO, $sqlResult);
         return $sqlResult;
-    }
-    
-    /**
-     * 
-     * @param array $data 
-     */
-    public static function console_log($data) {
-        if (is_array($data) || is_object($data)) {
-            echo("<script>console.group('$data[0]');console.log(" . json_encode($data) . ");console.groupEnd();</script>");
-        } else {
-            echo("<script>console.group('$data[0]');console.log(" . $data . ");console.groupEnd();</script>");
-        }
     }
     
     /**
@@ -94,6 +81,8 @@ SQL_USER_INFO;
             case "INCIDENT_STS":
                 $result = array( "1,受付済", "2,対応入力済","3,処置入力済");
                 break;
+            default :
+                return null;
         }
         return $result;
     }
@@ -106,10 +95,12 @@ SQL_USER_INFO;
      */
     function findValueByNameAndKey($name, $key) {
         $array = $this->findKeyValue($name);
-        foreach ($array as $value) {
-            $val = explode(",", $value);
-            if ($val[0] == $key) {
-                return $val[1];
+        if($array != null){
+            foreach ($array as $value) {
+                $val = explode(",", $value);
+                if ($val[0] == $key) {
+                    return $val[1];
+                }
             }
         }
         return null;
