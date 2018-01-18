@@ -74,6 +74,7 @@ class IncidentListGetAction extends CommonAction {
                     $incidentAry["incidentNo"] = $incident->getIncidentNo();
                     $incidentAry["callContent"] = $incident->getCallContent();
                     $incidentAry["callDate"] = $incident->getCallDate();
+                    $incidentAry["callDateTime"] = $incident->getCallDateTime();
                     $incidentAry["incidentType"] = $incident->getIncidentType();
                     $incidentAry["incidentTypeString"] = $incident->getIncidentTypeString();
                     $incidentAry["incidentStatus"] = $incident->getIncidentStatus();

@@ -13,14 +13,14 @@ date_default_timezone_set('Asia/Tokyo');
 
 class IncidentModel extends CommonModel {
 
-    public function getIncidentList($conditions) {			
-
+    public function getIncidentList($conditions) {
+        $format = "yyyy/mm/dd hh24:mi:ss";
+        
         $SQL_USER_INFO = <<< SQL_USER_INFO
                 SELECT 
                     T1.INCIDENT_NO
                     ,T1.CALL_CONTENT 
-                    ,TO_CHAR(T1.CALL_START_DATE,'yyyy/mm/dd') AS CALL_START_DATE
-                    ,TO_CHAR(T1.CALL_END_DATE,'yyyy/mm/dd') AS CALL_END_DATE
+                    ,TO_CHAR(T1.CALL_START_DATE,'$format') AS CALL_DATE
                     ,T1.INCIDENT_TYPE
                     ,T1.INCIDENT_STS
                 FROM
@@ -28,8 +28,6 @@ class IncidentModel extends CommonModel {
                 WHERE
                     1=1
 SQL_USER_INFO;
-        
-        $format = "yyyy/mm/dd hh24:mi:ss";
         
         // インシデント番号
         if ($conditions['incidentNo'] != NULL) {

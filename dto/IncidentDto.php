@@ -13,10 +13,6 @@ class IncidentDto extends SectionDto{
     private $callContent;
     /** 受付日 */
     private $callDate;
-    /** 受付開始時刻 */
-    private $callStartDateFrom;
-    /** 受付終了時刻 */
-    private $callStartDateTo;
     /** インシデント分類 */
     private $incidentType;
     /** インシデント分類String */
@@ -38,12 +34,8 @@ class IncidentDto extends SectionDto{
         return $this->callDate;
     }
 
-    public function getCallStartDateFrom() {
-        return $this->callStartDateFrom;
-    }
-
-    public function getCallStartDateTo() {
-        return $this->callStartDateTo;
+    public function getCallDateTime() {
+        return $this->callDateTime;
     }
 
     public function getIncidentType() {
@@ -74,12 +66,8 @@ class IncidentDto extends SectionDto{
         $this->callDate = $callDate;
     }
 
-    public function setCallStartDateFrom($callStartDateFrom) {
-        $this->callStartDateFrom = $callStartDateFrom;
-    }
-
-    public function setCallStartDateTo($callStartDateTo) {
-        $this->callStartDateTo = $callStartDateTo;
+    public function setCallDateTime($callDateTime) {
+        $this->callDateTime = $callDateTime;
     }
 
     public function setIncidentType($incidentType) {

@@ -55,9 +55,7 @@ class IncidentListGetLogic extends CommonLogic {
             // 情報の取得
             $incidentDto->setIncidentNo($incidentData["INCIDENT_NO"]);
             $incidentDto->setCallContent($incidentData["CALL_CONTENT"]);
-            $incidentDto->setCallDate($incidentData["CALL_START_DATE"]);
-            $incidentDto->setCallStartDateFrom($incidentData["CALL_START_DATE"]);
-            $incidentDto->setCallStartDateTo($incidentData["CALL_END_DATE"]);
+            $incidentDto->setCallDate($incidentData["CALL_DATE"]);
             $incidentDto->setIncidentType($incidentData["INCIDENT_TYPE"]);
             $incidentDto->setIncidentTypeString($incidentModel->findValueByNameAndKey("INCIDENT_TYPE", $incidentDto->getIncidentType()));
             $incidentDto->setIncidentStatus($incidentData["INCIDENT_STS"]);
