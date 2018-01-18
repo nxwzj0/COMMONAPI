@@ -11,6 +11,7 @@ require_once('./dto/SectionDto.php');
 
 /**
  * Class ProjDto
+ * entity->model
  */
 class ProjDto extends SectionDto{
 
