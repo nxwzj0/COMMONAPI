@@ -18,26 +18,6 @@ require_once('./dto/IncidentListGetResultDto.php');
 require_once('./logic/IncidentListGetLogic.php');
 
 class IncidentListGetAction extends CommonAction {
-
-    /**
-     * チェックボックスの状態に応じて検索条件を作成する
-     * @param type $result 結果
-     * @param type $param チェックボックスの状態
-     * @param type $val 対応する値
-     * @return string
-     */
-    public function madeCheckboxCondtion($result,$param,$val){
-        if($param == null || $param == "" || $param == "false"){
-            return $result;
-        }elseif($param == "true"){
-            if($result == ""){
-                $result .= "'".$val."'";
-            }else{
-                $result .= ","."'".$val."'";
-            }
-        }
-        return $result;
-    }
     
     public function index() {
         // 戻り値用配列
@@ -110,4 +90,23 @@ class IncidentListGetAction extends CommonAction {
         return $incidentListAry;
     }
 
+    /**
+     * チェックボックスの状態に応じて検索条件を作成する
+     * @param type $result 結果
+     * @param type $param チェックボックスの状態
+     * @param type $val 対応する値
+     * @return string
+     */
+    public function madeCheckboxCondtion($result,$param,$val){
+        if($param == null || $param == "" || $param == "false"){
+            return $result;
+        }elseif($param == "true"){
+            if($result == ""){
+                $result .= "'".$val."'";
+            }else{
+                $result .= ","."'".$val."'";
+            }
+        }
+        return $result;
+    }
 }
