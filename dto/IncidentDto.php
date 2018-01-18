@@ -11,6 +11,7 @@ require_once('./dto/SectionDto.php');
 
 /**
  * Class IncidentDto
+ * entity->model
  */
 class IncidentDto extends SectionDto{
 
