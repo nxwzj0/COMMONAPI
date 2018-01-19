@@ -2,7 +2,7 @@
 //*****************************************************************************
 //	システム名　　　：インシデント管理システム
 //	サブシステム名　：
-//	処理名　　　　　：DeptListGetDto
+//	処理名　　　　　：DeptListGetResultDto
 //	作成日付・作成者：2018.01.19 newtouch
 //	修正履歴　　　　：
 //*****************************************************************************
@@ -10,7 +10,7 @@
 require_once('./dto/CommonDto.php');
 
 /**
- * Class DeptListGetDto
+ * Class DeptListGetResultDto
  *
  * @property DeptDto[] $deptList
  */

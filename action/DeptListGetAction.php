@@ -2,18 +2,15 @@
 //*****************************************************************************
 //	システム名　　　：共通DBAPI
 //	サブシステム名　：
-//	処理名　　　　　：部門情報取得処理
+//	処理名　　　　　：DeptListGetAction
 //	作成日付・作成者：2018.01.19 newtouch
 //	修正履歴　　　　：
 //*****************************************************************************
 // 共通処理読み込み
 require_once('./action/CommonAction.php');
 // dto読み込み
-require_once('./dto/SectionDto.php');
-require_once('./dto/DeptDto.php');
 require_once('./dto/DeptListGetDto.php');
 require_once('./dto/DeptListGetResultDto.php');
-
 // logic処理読み込み
 require_once('./logic/DeptListGetLogic.php');
 

@@ -10,16 +10,13 @@
 require_once('./logic/CommonLogic.php');
 require_once('./inc/const.php');
 require_once('./common/CommonService.php');
-require_once('./dto/SectionDto.php');
-require_once('./dto/CommonDto.php');
-/* dept */
 require_once('./model/EescSectionModel.php');
 require_once('./dto/DeptDto.php');
 require_once('./dto/DeptListGetDto.php');
 require_once('./dto/DeptListGetResultDto.php');
 
 /**
- * Dept service
+ * DeptListGetLogic
  */
 class DeptListGetLogic extends CommonLogic {
 
