@@ -12,18 +12,23 @@ require_once('./dto/CommonDto.php');
  * Class IncidentListGetDto
  * 情報検索用パラメータ
  */
-class IncidentListGetDto extends CommonDto{
- 
+class IncidentListGetDto extends CommonDto {
+
     /** インシデント番号 */
     private $incidentNo;
+
     /** 受付内容 */
     private $callContent;
+
     /** 受付開始時刻 */
     private $callStartDateFrom;
+
     /** 受付終了時刻 */
     private $callStartDateTo;
+
     /** インシデント分類 */
     private $incidentType;
+
     /** ステータス */
     private $incidentStatus;
 
@@ -74,5 +79,5 @@ class IncidentListGetDto extends CommonDto{
     public function setIncidentStatus($incidentStatus) {
         $this->incidentStatus = $incidentStatus;
     }
-    
+
 }

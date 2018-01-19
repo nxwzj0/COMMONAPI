@@ -11,25 +11,32 @@ require_once('./dto/SectionDto.php');
 /**
  * Class IncidentDto
  */
-class IncidentDto extends SectionDto{
+class IncidentDto extends SectionDto {
 
     /** インシデントID */
     private $incidentId;
+
     /** インシデント番号 */
     private $incidentNo;
+
     /** 受付内容 */
     private $callContent;
+
     /** 受付日 */
     private $callDate;
+
     /** インシデント分類 */
     private $incidentType;
+
     /** インシデント分類String */
     private $incidentTypeString;
+
     /** ステータス */
     private $incidentStatus;
+
     /** ステータスString */
     private $incidentStatusString;
-    
+
     public function getIncidentNo() {
         return $this->incidentNo;
     }
@@ -93,7 +100,7 @@ class IncidentDto extends SectionDto{
     public function setIncidentStatusString($incidentStatusString) {
         $this->incidentStatusString = $incidentStatusString;
     }
-    
+
     public function getIncidentId() {
         return $this->incidentId;
     }
@@ -101,4 +108,5 @@ class IncidentDto extends SectionDto{
     public function setIncidentId($incidentId) {
         $this->incidentId = $incidentId;
     }
+
 }

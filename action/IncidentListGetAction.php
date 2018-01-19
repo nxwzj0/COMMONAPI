@@ -15,7 +15,7 @@ require_once('./dto/IncidentListGetResultDto.php');
 require_once('./logic/IncidentListGetLogic.php');
 
 class IncidentListGetAction extends CommonAction {
-    
+
     public function index() {
         // 戻り値用配列
         $rtnAry = array();
@@ -25,18 +25,18 @@ class IncidentListGetAction extends CommonAction {
         $P = $GLOBALS[P]; // 共通パラメータ配列取得
         // 情報検索用パラメータ
         $incidentType = "";
-        $incidentType = $this->madeCheckboxCondtion($incidentType,$P["incidentTypeSyougai"],"1");
-        $incidentType = $this->madeCheckboxCondtion($incidentType,$P["incidentTypeJiko"],"2");
-        $incidentType = $this->madeCheckboxCondtion($incidentType,$P["incidentTypeClaim"],"3");
-        $incidentType = $this->madeCheckboxCondtion($incidentType,$P["incidentTypeToiawase"],"4");
-        $incidentType = $this->madeCheckboxCondtion($incidentType,$P["incidentTypeInfo"],"5");
-        $incidentType = $this->madeCheckboxCondtion($incidentType,$P["incidentTypeOther"],"6");
-        
+        $incidentType = $this->madeCheckboxCondtion($incidentType, $P["incidentTypeSyougai"], "1");
+        $incidentType = $this->madeCheckboxCondtion($incidentType, $P["incidentTypeJiko"], "2");
+        $incidentType = $this->madeCheckboxCondtion($incidentType, $P["incidentTypeClaim"], "3");
+        $incidentType = $this->madeCheckboxCondtion($incidentType, $P["incidentTypeToiawase"], "4");
+        $incidentType = $this->madeCheckboxCondtion($incidentType, $P["incidentTypeInfo"], "5");
+        $incidentType = $this->madeCheckboxCondtion($incidentType, $P["incidentTypeOther"], "6");
+
         $incidentStatus = "";
-        $incidentStatus = $this->madeCheckboxCondtion($incidentStatus,$P["incidentStatusCall"],"1");
-        $incidentStatus = $this->madeCheckboxCondtion($incidentStatus,$P["incidentStatusTaio"],"2");
-        $incidentStatus = $this->madeCheckboxCondtion($incidentStatus,$P["incidentStatusAct"],"3");
-        
+        $incidentStatus = $this->madeCheckboxCondtion($incidentStatus, $P["incidentStatusCall"], "1");
+        $incidentStatus = $this->madeCheckboxCondtion($incidentStatus, $P["incidentStatusTaio"], "2");
+        $incidentStatus = $this->madeCheckboxCondtion($incidentStatus, $P["incidentStatusAct"], "3");
+
         $incidentListGetDto->setIncidentNo($P['incidentNo']);
         $incidentListGetDto->setCallContent($P['callContent']);
         $incidentListGetDto->setCallStartDateFrom($P['callStartDateFrom']);
@@ -50,22 +50,22 @@ class IncidentListGetAction extends CommonAction {
 
         /* 戻り値作成処理 */
         $rtnAry = $this->createReturnArray($eventResult);
-        
+
         // 値を返す(Angular)
         echo $this->returnAngularJSONP($rtnAry);
     }
-    
+
     public function createReturnArray(IncidentListGetResultDto $eventResult) {
         $incidentListAry = array();
-        
+
         // 戻り値の作成
         if ($eventResult && $eventResult->getLogicResult() == LOGIC_RESULT_SEIJOU) {
             array_push($incidentListAry, array("result" => true));
-            
+
             if ($eventResult->getIncidentList() && is_array($eventResult->getIncidentList()) && count($eventResult->getIncidentList()) > 0) {
                 foreach ($eventResult->getIncidentList() as $incident) {
                     $incidentAry = array();
- 
+
                     // インシデント情報
                     $incidentAry["incidentId"] = $incident->getIncidentId();
                     $incidentAry["incidentNo"] = $incident->getIncidentNo();
@@ -80,11 +80,10 @@ class IncidentListGetAction extends CommonAction {
                     array_push($incidentListAry, $incidentAry);
                 }
             }
-            
         } else {
             array_push($incidentListAry, array("result" => false));
         }
-        
+
         return $incidentListAry;
     }
 
@@ -95,16 +94,17 @@ class IncidentListGetAction extends CommonAction {
      * @param type $val 対応する値
      * @return string
      */
-    public function madeCheckboxCondtion($result,$param,$val){
-        if($param == null || $param == "" || $param == "false"){
+    public function madeCheckboxCondtion($result, $param, $val) {
+        if ($param == null || $param == "" || $param == "false") {
             return $result;
-        }elseif($param == "true"){
-            if($result == ""){
-                $result .= "'".$val."'";
-            }else{
-                $result .= ","."'".$val."'";
+        } elseif ($param == "true") {
+            if ($result == "") {
+                $result .= "'" . $val . "'";
+            } else {
+                $result .= "," . "'" . $val . "'";
             }
         }
         return $result;
     }
+
 }

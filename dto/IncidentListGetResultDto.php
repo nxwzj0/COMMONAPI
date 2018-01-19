@@ -13,8 +13,8 @@ require_once('./dto/CommonDto.php');
  *
  * @property IncidentDto[] $incidentList
  */
-class IncidentListGetResultDto extends CommonDto{
-    
+class IncidentListGetResultDto extends CommonDto {
+
     private $incidentList = array();
 
     /**
@@ -42,5 +42,5 @@ class IncidentListGetResultDto extends CommonDto{
     public function addIncidentList(IncidentDto $incidentList) {
         $this->incidentList[] = $incidentList;
     }
- 
+
 }
