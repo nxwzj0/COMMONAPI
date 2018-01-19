@@ -11,20 +11,6 @@ require_once("./env.inc");
 // Action処理読み込み
 require_once("./action/DeptListGetAction.php");
 
-// 共通処理
-$common = new CommonService();
-
-/* 返り値初期設定 */
-$rtnAry = array();
-
-// リクエストタイプを確認
-//if (!$common->checkRequestType("POST")) {
-//    // 不正なアクセス
-//    array_push($rtnAry, array("result" => false));
-//    echo json_encode($rtnAry);
-//    exit;
-//}
-
 $deptListGetAction = new DeptListGetAction();
 $deptListGetAction->index();
 exit;
