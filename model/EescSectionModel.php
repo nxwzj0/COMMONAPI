@@ -10,7 +10,7 @@
 require_once("./model/CommonModel.php");
 
 /**
- * EescSection sql
+ * EescSectionModel
  */
 class EescSectionModel extends CommonModel {
 
@@ -26,11 +26,11 @@ class EescSectionModel extends CommonModel {
                 WHERE
                     1=1
 SQL_USER_INFO;
-        
+
         if ($conditions['postCd'] != NULL) {
             $SQL_USER_INFO = $SQL_USER_INFO . " AND T1.職制コード LIKE " . "'%" . $conditions['postCd'] . "%' ";
         }
-        
+
         if ($conditions['sectionNm'] != NULL) {
             $SQL_USER_INFO = $SQL_USER_INFO . " AND T1.簡略名 LIKE " . "'%" . $conditions['sectionNm'] . "%' ";
         }
@@ -44,5 +44,5 @@ SQL_USER_INFO;
         $MultiExecSql->getResultData($SQL_USER_INFO, $sqlResult);
         return $sqlResult;
     }
-    
+
 }

@@ -34,22 +34,22 @@ class DeptListGetAction extends CommonAction {
 
         /* 戻り値作成処理 */
         $rtnAry = $this->createReturnArray($eventResult);
-        
+
         // 値を返す(Angular)
         echo $this->returnAngularJSONP($rtnAry);
     }
-    
+
     public function createReturnArray(DeptListGetResultDto $eventResult) {
         $deptListAry = array();
-        
+
         // 戻り値の作成
         if ($eventResult && $eventResult->getLogicResult() == LOGIC_RESULT_SEIJOU) {
             array_push($deptListAry, array("result" => true));
-            
+
             if ($eventResult->getDeptList() && is_array($eventResult->getDeptList()) && count($eventResult->getDeptList()) > 0) {
                 foreach ($eventResult->getDeptList() as $dept) {
                     $deptAry = array();
- 
+
                     // 部門情報
                     $deptAry["postCd"] = $dept->getPostCd();
                     $deptAry["sectionNm"] = $dept->getSectionNm();
@@ -58,11 +58,10 @@ class DeptListGetAction extends CommonAction {
                     array_push($deptListAry, $deptAry);
                 }
             }
-            
         } else {
             array_push($deptListAry, array("result" => false));
         }
-        
+
         return $deptListAry;
     }
 

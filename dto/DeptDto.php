@@ -1,4 +1,5 @@
 <?php
+
 //*****************************************************************************
 //	システム名　　　：共通DBAPI
 //	サブシステム名　：
@@ -12,17 +13,20 @@ require_once('./dto/SectionDto.php');
 /**
  * Class DeptDto
  */
-class DeptDto extends SectionDto{
+class DeptDto extends SectionDto {
 
     /** 職制コード */
     private $postCd;
+
     /** 簡略名 */
     private $sectionNm;
+
     /** 会社cd */
     private $companyCd;
+
     /** 会社名 */
     private $companyNm;
-    
+
     public function getPostCd() {
         return $this->postCd;
     }

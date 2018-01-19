@@ -14,11 +14,11 @@ require_once('./dto/CommonDto.php');
  *
  * @property DeptDto[] $deptList
  */
-class DeptListGetResultDto extends CommonDto{
-    
+class DeptListGetResultDto extends CommonDto {
+
     private $deptList = array();
- 
-     /**
+
+    /**
      * @return DeptDto[]
      */
     public function getDeptList() {
@@ -43,5 +43,5 @@ class DeptListGetResultDto extends CommonDto{
     public function addDeptList(DeptDto $deptList) {
         $this->deptList[] = $deptList;
     }
- 
+
 }
