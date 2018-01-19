@@ -27,7 +27,7 @@ class IncidentModel extends CommonModel {
                 FROM
                     IDENT_T_INCIDENT T1 
                 WHERE
-                    1=1
+                    DEL_FLG = '0'
 SQL_USER_INFO;
 
         // インシデント番号
