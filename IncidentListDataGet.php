@@ -8,8 +8,6 @@
 //	修正履歴　　　　：
 //*****************************************************************************
 require_once("./env.inc");
-// 共通処理読み込み
-require_once("./common/CommonService.php");
 // Action処理読み込み
 require_once("./action/IncidentListGetAction.php");
 

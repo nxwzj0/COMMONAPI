@@ -28,21 +28,20 @@ class IncidentListGetAction extends CommonAction {
         $P = $GLOBALS[P]; // 共通パラメータ配列取得
         // 情報検索用パラメータ
         $incidentType = "";
-        $incidentType = $this->madeCheckboxCondtion($incidentType,$P["incidentType1"],"1");
-        $incidentType = $this->madeCheckboxCondtion($incidentType,$P["incidentType2"],"2");
-        $incidentType = $this->madeCheckboxCondtion($incidentType,$P["incidentType3"],"3");
-        $incidentType = $this->madeCheckboxCondtion($incidentType,$P["incidentType4"],"4");
-        $incidentType = $this->madeCheckboxCondtion($incidentType,$P["incidentType5"],"5");
-        $incidentType = $this->madeCheckboxCondtion($incidentType,$P["incidentType6"],"6");
+        $incidentType = $this->madeCheckboxCondtion($incidentType,$P["incidentTypeSyougai"],"1");
+        $incidentType = $this->madeCheckboxCondtion($incidentType,$P["incidentTypeJiko"],"2");
+        $incidentType = $this->madeCheckboxCondtion($incidentType,$P["incidentTypeClaim"],"3");
+        $incidentType = $this->madeCheckboxCondtion($incidentType,$P["incidentTypeToiawase"],"4");
+        $incidentType = $this->madeCheckboxCondtion($incidentType,$P["incidentTypeInfo"],"5");
+        $incidentType = $this->madeCheckboxCondtion($incidentType,$P["incidentTypeOther"],"6");
         
         $incidentStatus = "";
-        $incidentStatus = $this->madeCheckboxCondtion($incidentStatus,$P["incidentStatus1"],"1");
-        $incidentStatus = $this->madeCheckboxCondtion($incidentStatus,$P["incidentStatus2"],"2");
-        $incidentStatus = $this->madeCheckboxCondtion($incidentStatus,$P["incidentStatus3"],"3");
+        $incidentStatus = $this->madeCheckboxCondtion($incidentStatus,$P["incidentStatusCall"],"1");
+        $incidentStatus = $this->madeCheckboxCondtion($incidentStatus,$P["incidentStatusTaio"],"2");
+        $incidentStatus = $this->madeCheckboxCondtion($incidentStatus,$P["incidentStatusAct"],"3");
         
         $incidentListGetDto->setIncidentNo($P['incidentNo']);
         $incidentListGetDto->setCallContent($P['callContent']);
-        $incidentListGetDto->setCallDate($P['callDate']);
         $incidentListGetDto->setCallStartDateFrom($P['callStartDateFrom']);
         $incidentListGetDto->setCallStartDateTo($P['callStartDateTo']);
         $incidentListGetDto->setIncidentType($incidentType);
