@@ -2,8 +2,8 @@
 //*****************************************************************************
 //	システム名　　　：共通DBAPI
 //	サブシステム名　：
-//	処理名　　　　　：UserListGetLogic
-//	作成日付・作成者：2018.01.09 ADF)S.Yoshida
+//	処理名　　　　　：DeptListGetLogic
+//	作成日付・作成者：2018.01.19 newtouch
 //	修正履歴　　　　：
 //*****************************************************************************
 /* common */
@@ -36,7 +36,7 @@ class DeptListGetLogic extends CommonLogic {
         $conditions['companyNm'] = $deptListGetDto->getCompanyNm();
 
         try {
-            // ユーザ情報を取得
+            // 部門情報を取得
             $eescSectionModel = new EescSectionModel();
             $deptList = $eescSectionModel->getDeptList($conditions);
         } catch (Exception $e) {
@@ -46,16 +46,12 @@ class DeptListGetLogic extends CommonLogic {
             return $deptListGetResultDto;
         }
 
-        // 個数分ユーザ情報リストをループ
+        // 個数分部門情報リストをループ
         foreach ($deptList as $deptData) {
             // deptDtoを作成
             $deptDto = new DeptDto();
 
-            // ユーザ情報の取得
-//                    T1.職制コード POST_CD
-//                    ,T1.簡略名 SECTION_NM
-//                    ,T1.会社コード COMPANY_CD
-//                    ,T1.会社名 COMPANY_NM
+            // 部門情報の取得
             $deptDto->setPostCd($deptData["POST_CD"]);
             $deptDto->setSectionNm($deptData["SECTION_NM"]);
             $deptDto->setCompanyCd($deptData["COMPANY_CD"]);

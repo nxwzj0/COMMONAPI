@@ -2,8 +2,8 @@
 //*****************************************************************************
 //	システム名　　　：共通DBAPI
 //	サブシステム名　：
-//	処理名　　　　　：ユーザ情報取得処理
-//	作成日付・作成者：2018.01.09 ADF)S.Yoshida
+//	処理名　　　　　：部門情報取得処理
+//	作成日付・作成者：2018.01.19 newtouch
 //	修正履歴　　　　：
 //*****************************************************************************
 // 共通処理読み込み
@@ -24,17 +24,12 @@ class DeptListGetAction extends CommonAction {
         $rtnAry = array();
 
         $P = $GLOBALS[P]; // 共通パラメータ配列取得
-        // 画面からパラメータ取得
-        $postCd = $P['postCd'];
-        $sectionNm = $P['sectionNm'];
-        $companyNm = $P['companyNm'];
-
         /* Dto作成処理 */
         $deptListGetDto = new DeptListGetDto();
-        // 情報検索用パラメータ
-        $deptListGetDto->setPostCd($postCd);
-        $deptListGetDto->setSectionNm($sectionNm);
-        $deptListGetDto->setCompanyNm($companyNm);
+        // 部門情報検索用パラメータ
+        $deptListGetDto->setPostCd($P['postCd']);
+        $deptListGetDto->setSectionNm($P['sectionNm']);
+        $deptListGetDto->setCompanyNm($P['companyNm']);
 
         /* ロジック処理 */
         $deptListGetLogic = new DeptListGetLogic();
@@ -58,7 +53,7 @@ class DeptListGetAction extends CommonAction {
                 foreach ($eventResult->getDeptList() as $dept) {
                     $deptAry = array();
  
-                    // インシデント情報
+                    // 部門情報
                     $deptAry["postCd"] = $dept->getPostCd();
                     $deptAry["sectionNm"] = $dept->getSectionNm();
                     $deptAry["companyNm"] = $dept->getCompanyNm();
