@@ -2,18 +2,15 @@
 //*****************************************************************************
 //	システム名　　　：共通DBAPI
 //	サブシステム名　：
-//	処理名　　　　　：インシデント情報取得処理
+//	処理名　　　　　：IncidentListGetAction
 //	作成日付・作成者：2018.01.18 newtouch
 //	修正履歴　　　　：
 //*****************************************************************************
 // 共通処理読み込み
 require_once('./action/CommonAction.php');
 // dto読み込み
-require_once('./dto/SectionDto.php');
-require_once('./dto/IncidentDto.php');
 require_once('./dto/IncidentListGetDto.php');
 require_once('./dto/IncidentListGetResultDto.php');
-
 // logic処理読み込み
 require_once('./logic/IncidentListGetLogic.php');
 
@@ -70,6 +67,7 @@ class IncidentListGetAction extends CommonAction {
                     $incidentAry = array();
  
                     // インシデント情報
+                    $incidentAry["incidentId"] = $incident->getIncidentId();
                     $incidentAry["incidentNo"] = $incident->getIncidentNo();
                     $incidentAry["callContent"] = $incident->getCallContent();
                     $incidentAry["callDate"] = $incident->getCallDate();

@@ -1,12 +1,20 @@
 <?php
+//*****************************************************************************
+//	システム名　　　：共通DBAPI
+//	サブシステム名　：
+//	処理名　　　　　：IncidentDto
+//	作成日付・作成者：2018.01.19 newtouch
+//	修正履歴　　　　：
+//*****************************************************************************
 require_once('./dto/SectionDto.php');
 
 /**
  * Class IncidentDto
- * entity->model
  */
 class IncidentDto extends SectionDto{
 
+    /** インシデントID */
+    private $incidentId;
     /** インシデント番号 */
     private $incidentNo;
     /** 受付内容 */
@@ -84,5 +92,13 @@ class IncidentDto extends SectionDto{
 
     public function setIncidentStatusString($incidentStatusString) {
         $this->incidentStatusString = $incidentStatusString;
+    }
+    
+    public function getIncidentId() {
+        return $this->incidentId;
+    }
+
+    public function setIncidentId($incidentId) {
+        $this->incidentId = $incidentId;
     }
 }

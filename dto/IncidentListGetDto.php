@@ -1,8 +1,15 @@
 <?php
+//*****************************************************************************
+//	システム名　　　：共通DBAPI
+//	サブシステム名　：
+//	処理名　　　　　：IncidentListGetDto
+//	作成日付・作成者：2018.01.19 newtouch
+//	修正履歴　　　　：
+//*****************************************************************************
 require_once('./dto/CommonDto.php');
 
 /**
- * Class IncidentListDataGetDto
+ * Class IncidentListGetDto
  * 情報検索用パラメータ
  */
 class IncidentListGetDto extends CommonDto{

@@ -2,24 +2,20 @@
 //*****************************************************************************
 //	システム名　　　：共通DBAPI
 //	サブシステム名　：
-//	処理名　　　　　：UserListGetLogic
-//	作成日付・作成者：2018.01.09 ADF)S.Yoshida
+//	処理名　　　　　：IncidentListGetLogic
+//	作成日付・作成者：2018.01.19 newtouch
 //	修正履歴　　　　：
 //*****************************************************************************
 /* common */
 require_once('./logic/CommonLogic.php');
 require_once('./inc/const.php');
-require_once('./common/CommonService.php');
-require_once('./dto/SectionDto.php');
-require_once('./dto/CommonDto.php');
-/* dept */
 require_once('./model/IncidentModel.php');
 require_once('./dto/IncidentDto.php');
 require_once('./dto/IncidentListGetDto.php');
 require_once('./dto/IncidentListGetResultDto.php');
 
 /**
- * Incident service
+ * IncidentListGetLogic
  */
 class IncidentListGetLogic extends CommonLogic {
 
@@ -37,7 +33,7 @@ class IncidentListGetLogic extends CommonLogic {
         $conditions['incidentStatus'] = $incidentListGetDto->getIncidentStatus();
 
         try {
-            // ユーザ情報を取得
+            // インシデント情報を取得
             $incidentModel = new IncidentModel();
             $incidentList = $incidentModel->getIncidentList($conditions);
         } catch (Exception $e) {
@@ -47,12 +43,13 @@ class IncidentListGetLogic extends CommonLogic {
             return $incidentListGetResultDto;
         }
 
-        // 個数分ユーザ情報リストをループ
+        // 個数分インシデント情報リストをループ
         foreach ($incidentList as $incidentData) {
             // IncidentDtoを作成
             $incidentDto = new IncidentDto();
 
             // 情報の取得
+            $incidentDto->setIncidentId($incidentData["INCIDENT_ID"]);
             $incidentDto->setIncidentNo($incidentData["INCIDENT_NO"]);
             $incidentDto->setCallContent($incidentData["CALL_CONTENT"]);
             $incidentDto->setCallDate($incidentData["CALL_DATE"]);

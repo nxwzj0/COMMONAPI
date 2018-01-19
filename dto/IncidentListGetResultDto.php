@@ -1,8 +1,15 @@
 <?php
+//*****************************************************************************
+//	システム名　　　：共通DBAPI
+//	サブシステム名　：
+//	処理名　　　　　：IncidentListGetResultDto
+//	作成日付・作成者：2018.01.19 newtouch
+//	修正履歴　　　　：
+//*****************************************************************************
 require_once('./dto/CommonDto.php');
 
 /**
- * Class IncidentListGetDto
+ * Class IncidentListGetResultDto
  *
  * @property IncidentDto[] $incidentList
  */

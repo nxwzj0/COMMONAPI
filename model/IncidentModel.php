@@ -2,8 +2,8 @@
 //*****************************************************************************
 //	システム名　　　：共通DBAPI
 //	サブシステム名　：
-//	処理名　　　　　：EescUserModel
-//	作成日付・作成者：2018.01.09 ADF)S.Yoshida
+//	処理名　　　　　：IncidentModel
+//	作成日付・作成者：2018.01.19 newtouch
 //	修正履歴　　　　：
 //*****************************************************************************
 
@@ -18,7 +18,8 @@ class IncidentModel extends CommonModel {
         
         $SQL_USER_INFO = <<< SQL_USER_INFO
                 SELECT 
-                    T1.INCIDENT_NO
+                    T1.INCIDENT_ID
+                    ,T1.INCIDENT_NO
                     ,T1.CALL_CONTENT 
                     ,TO_CHAR(T1.CALL_START_DATE,'$format') AS CALL_DATE
                     ,T1.INCIDENT_TYPE
