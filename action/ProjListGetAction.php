@@ -54,6 +54,7 @@ class ProjListGetAction extends CommonAction {
                     $projAry = array();
 
                     // プロジェクト情報
+                    $projAry["pjId"] = $proj->getPjId();
                     $projAry["pjNo"] = $proj->getPjNo();
                     $projAry["inqNo"] = $proj->getInqNo();
                     $projAry["consumerNm"] = $proj->getConsumerNm();

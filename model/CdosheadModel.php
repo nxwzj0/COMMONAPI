@@ -11,7 +11,7 @@ require_once("./model/CommonModel.php");
 
 class CdosheadModel extends CommonModel {
 
-    public function getProjList($conditions) {			
+    public function getProjList($conditions) {
 
         $SQL_USER_INFO = <<< SQL_USER_INFO
                 SELECT 
@@ -30,7 +30,7 @@ SQL_USER_INFO;
         if ($conditions['pjNo'] != NULL) {
             $SQL_USER_INFO = $SQL_USER_INFO . " AND T1.ＯＳ番号 LIKE " . "'%" . $conditions['pjNo'] . "%' ";
         }
-        
+
         // ＩＮＱ番号
         if ($conditions['inqNo'] != NULL) {
             $SQL_USER_INFO = $SQL_USER_INFO . " AND T1.ＩＮＱ番号 LIKE " . "'%" . $conditions['inqNo'] . "%' ";
@@ -51,5 +51,5 @@ SQL_USER_INFO;
         $MultiExecSql->getResultData($SQL_USER_INFO, $sqlResult);
         return $sqlResult;
     }
-    
+
 }
