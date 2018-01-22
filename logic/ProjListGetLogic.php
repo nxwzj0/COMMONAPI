@@ -1,9 +1,9 @@
 <?php
 //*****************************************************************************
-//	システム名　　　：共通DBAPI
+//	システム名　　　：インシデント管理システム
 //	サブシステム名　：
-//	処理名　　　　　：UserListGetLogic
-//	作成日付・作成者：2018.01.09 ADF)S.Yoshida
+//	処理名　　　　　：ProjListGetLogic
+//	作成日付・作成者：2018.01.22 newtouch
 //	修正履歴　　　　：
 //*****************************************************************************
 /* common */
@@ -12,14 +12,14 @@ require_once('./inc/const.php');
 require_once('./common/CommonService.php');
 require_once('./dto/SectionDto.php');
 require_once('./dto/CommonDto.php');
-/* dept */
+/* プロジェクト */
 require_once('./model/CdosheadModel.php');
 require_once('./dto/ProjDto.php');
 require_once('./dto/ProjListGetDto.php');
 require_once('./dto/ProjListGetResultDto.php');
 
 /**
- * Proj service
+ * ProjListGetLogic
  */
 class ProjListGetLogic extends CommonLogic {
 
@@ -27,7 +27,7 @@ class ProjListGetLogic extends CommonLogic {
         // 戻りオブジェクト(ProjListGetResultDto)を作成
         $projListGetResultDto = new ProjListGetResultDto();
 
-        // deptListGetDtoから、パラメータを取得する、$conditionsを作成
+        // projListGetDto、パラメータを取得する、$conditionsを作成
         $conditions = array();
         $conditions['pjNo'] = $projListGetDto->getPjNo();
         $conditions['inqNo'] = $projListGetDto->getInqNo();
@@ -35,17 +35,17 @@ class ProjListGetLogic extends CommonLogic {
         $conditions['summaryNm'] = $projListGetDto->getSummaryNm();
 
         try {
-            // ユーザ情報を取得
+            // プロジェクト情報を取得
             $cdosheadModel = new CdosheadModel();
             $projList = $cdosheadModel->getProjList($conditions);
         } catch (Exception $e) {
             // LOGIC結果　SQLエラー '1' をセット
             $IncidentGetResultDto->setLogicResult(LOGIC_RESULT_SQL_ERROR);
-            // 戻りオブジェクト(UserListGetResultDto)
+            // 戻りオブジェクト(ProjListGetResultDto)
             return $projListGetResultDto;
         }
 
-        // 個数分ユーザ情報リストをループ
+        // 個数分プロジェクト情報リストをループ
         foreach ($projList as $projData) {
             // projDtoを作成
             $projDto = new ProjDto();
@@ -62,7 +62,7 @@ class ProjListGetLogic extends CommonLogic {
 
         // LOGIC結果　正常時 '0' をセット
         $projListGetResultDto->setLogicResult(LOGIC_RESULT_SEIJOU);
-        // 戻りオブジェクト(userListGetResultDto)
+        // 戻りオブジェクト(ProjListGetResultDto)
         return $projListGetResultDto;
     }
 

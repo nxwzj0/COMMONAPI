@@ -2,23 +2,23 @@
 //*****************************************************************************
 //	システム名　　　：インシデント管理システム
 //	サブシステム名　：
-//	処理名　　　　　：DeptListGetDto
-//	作成日付・作成者：2018.01.09 ADF)S.Yoshida
+//	処理名　　　　　：ProjListGetResultDto
+//	作成日付・作成者：2018.01.22 newtouch
 //	修正履歴　　　　：
 //*****************************************************************************
 
 require_once('./dto/CommonDto.php');
 
 /**
- * Class UserListGetDto
+ * Class ProjListGetResultDto
  *
- * @property DeptDto[] $projList
+ * @property ProjDto[] $projList
  */
-class ProjListGetResultDto extends CommonDto{
-    
+class ProjListGetResultDto extends CommonDto {
+
     private $projList = array();
- 
-     /**
+
+    /**
      * @return ProjDto[]
      */
     public function getProjList() {
@@ -43,5 +43,5 @@ class ProjListGetResultDto extends CommonDto{
     public function addProjList(ProjDto $projList) {
         $this->projList[] = $projList;
     }
- 
+
 }

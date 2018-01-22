@@ -1,9 +1,9 @@
 <?php
 //*****************************************************************************
-//	システム名　　　：共通DBAPI
+//	システム名　　　：インシデント管理システム
 //	サブシステム名　：
-//	処理名　　　　　：ユーザDto
-//	作成日付・作成者：2018.01.09 ADF)S.Yoshida
+//	処理名　　　　　：ProjDto
+//	作成日付・作成者：2018.01.22 newtouch
 //	修正履歴　　　　：
 //*****************************************************************************
 
@@ -13,18 +13,14 @@ require_once('./dto/SectionDto.php');
  * Class ProjDto
  * entity->model
  */
-class ProjDto extends SectionDto{
+class ProjDto extends SectionDto {
 
     private $pjId;
-
     private $pjNo;
-
     private $inqNo;
-
     private $consumerNm;
-    
     private $summaryNm;
-    
+
     public function getPjId() {
         return $this->pjId;
     }

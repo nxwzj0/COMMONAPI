@@ -1,28 +1,32 @@
 <?php
 //*****************************************************************************
-//	システム名　　　：共通DBAPI
+//	システム名　　　：インシデント管理システム
 //	サブシステム名　：
-//	処理名　　　　　：DeptListDataGetDto
-//	作成日付・作成者：2018.01.09 ADF)S.Yoshida
+//	処理名　　　　　：ProjListGetDto
+//	作成日付・作成者：2018.01.22 newtouch
 //	修正履歴　　　　：
 //*****************************************************************************
 
 require_once('./dto/CommonDto.php');
 
 /**
- * Class DeptListDataGetDto
+ * Class ProjListGetDto
  * 情報検索用パラメータ
  */
-class ProjListGetDto extends CommonDto{
+class ProjListGetDto extends CommonDto {
+
     /** PJ番号 */
     private $pjNo;
+
     /** INQ番号 */
     private $inqNo;
+
     /** 最終需要家 */
     private $consumerNm;
+
     /** 総括品 */
-    private $summaryNm ;
-    
+    private $summaryNm;
+
     public function getPjNo() {
         return $this->pjNo;
     }

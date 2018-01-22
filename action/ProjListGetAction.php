@@ -1,9 +1,9 @@
 <?php
 //*****************************************************************************
-//	システム名　　　：共通DBAPI
+//	システム名　　　：インシデント管理システム
 //	サブシステム名　：
-//	処理名　　　　　：ユーザ情報取得処理
-//	作成日付・作成者：2018.01.09 ADF)S.Yoshida
+//	処理名　　　　　：ProjListGetAction
+//	作成日付・作成者：2018.01.22 newtouch
 //	修正履歴　　　　：
 //*****************************************************************************
 // 共通処理読み込み
@@ -13,7 +13,6 @@ require_once('./dto/SectionDto.php');
 require_once('./dto/ProjDto.php');
 require_once('./dto/ProjListGetDto.php');
 require_once('./dto/ProjListGetResultDto.php');
-
 // logic処理読み込み
 require_once('./logic/ProjListGetLogic.php');
 
@@ -38,23 +37,23 @@ class ProjListGetAction extends CommonAction {
 
         /* 戻り値作成処理 */
         $rtnAry = $this->createReturnArray($eventResult);
-        
+
         // 値を返す(Angular)
         echo $this->returnAngularJSONP($rtnAry);
     }
-    
+
     public function createReturnArray(ProjListGetResultDto $eventResult) {
         $projListAry = array();
-        
+
         // 戻り値の作成
         if ($eventResult && $eventResult->getLogicResult() == LOGIC_RESULT_SEIJOU) {
             array_push($projListAry, array("result" => true));
-            
+
             if ($eventResult->getProjList() && is_array($eventResult->getProjList()) && count($eventResult->getProjList()) > 0) {
                 foreach ($eventResult->getProjList() as $proj) {
                     $projAry = array();
- 
-                    // インシデント情報
+
+                    // プロジェクト情報
                     $projAry["pjNo"] = $proj->getPjNo();
                     $projAry["inqNo"] = $proj->getInqNo();
                     $projAry["consumerNm"] = $proj->getConsumerNm();
@@ -63,11 +62,10 @@ class ProjListGetAction extends CommonAction {
                     array_push($projListAry, $projAry);
                 }
             }
-            
         } else {
             array_push($projListAry, array("result" => false));
         }
-        
+
         return $projListAry;
     }
 
