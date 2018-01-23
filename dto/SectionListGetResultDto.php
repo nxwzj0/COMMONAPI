@@ -2,7 +2,7 @@
 //*****************************************************************************
 //	システム名　　　：インシデント管理システム
 //	サブシステム名　：
-//	処理名　　　　　：DeptListGetResultDto
+//	処理名　　　　　：SectionListGetResultDto
 //	作成日付・作成者：2018.01.19 newtouch
 //	修正履歴　　　　：
 //*****************************************************************************
@@ -10,38 +10,38 @@
 require_once('./dto/CommonDto.php');
 
 /**
- * Class DeptListGetResultDto
+ * Class SectionListGetResultDto
  *
- * @property DeptDto[] $deptList
+ * @property SectionDto[] $sectionList
  */
-class DeptListGetResultDto extends CommonDto {
+class SectionListGetResultDto extends CommonDto {
 
-    private $deptList = array();
+    private $sectionList = array();
 
     /**
-     * @return DeptDto[]
+     * @return SectionDto[]
      */
-    public function getDeptList() {
-        return $this->deptList;
+    public function getSectionList() {
+        return $this->sectionList;
     }
 
     /**
      * @param int $index
-     * @return DeptDto
+     * @return SectionDto
      */
-    public function getDept($index = null) {
+    public function getSection($index = null) {
         if (is_null($index)) {
             return null;
         } else {
-            return $this->deptList[$index];
+            return $this->sectionList[$index];
         }
     }
 
     /**
-     * @param DeptDto $deptList
+     * @param SectionDto $sectionList
      */
-    public function addDeptList(DeptDto $deptList) {
-        $this->deptList[] = $deptList;
+    public function addSectionList(SectionDto $sectionList) {
+        $this->sectionList[] = $sectionList;
     }
 
 }

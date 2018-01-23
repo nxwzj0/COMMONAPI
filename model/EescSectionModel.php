@@ -14,7 +14,7 @@ require_once("./model/CommonModel.php");
  */
 class EescSectionModel extends CommonModel {
 
-    public function getDeptList($conditions) {
+    public function getSectionList($conditions) {
         $SQL_USER_INFO = <<< SQL_USER_INFO
                 SELECT 
                     T1.職制コード POST_CD

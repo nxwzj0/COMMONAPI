@@ -14,11 +14,59 @@ require_once('./dto/CommonDto.php');
  *
  * @property String $sectionCd
  * @property String $sectionNm
+ * @property String $postCd
+ * @property String $companyCd
+ * @property String $companyNm
  */
-class SectionDto extends CommonDto{
+class SectionDto extends CommonDto {
 
     private $sectionCd;
     private $sectionNm;
+    private $postCd;
+    private $companyCd;
+    private $companyNm;
+
+    /**
+     * @return String
+     */
+    public function getPostCd() {
+        return $this->postCd;
+    }
+
+    /**
+     * @param String $postCd
+     */
+    public function setPostCd($postCd) {
+        $this->postCd = $postCd;
+    }
+
+    /**
+     * @return String
+     */
+    public function getCompanyCd() {
+        return $this->companyCd;
+    }
+
+    /**
+     * @param String $companyCd
+     */
+    public function setCompanyCd($companyCd) {
+        $this->companyCd = $companyCd;
+    }
+
+    /**
+     * @return String
+     */
+    public function getCompanyNm() {
+        return $this->companyNm;
+    }
+
+    /**
+     * @param String $companyNm
+     */
+    public function setCompanyNm($companyNm) {
+        $this->companyNm = $companyNm;
+    }
 
     /**
      * @return String
