@@ -1,5 +1,4 @@
 <?php
-
 //*****************************************************************************
 //	システム名　　　：共通DBAPI
 //	サブシステム名　：
@@ -12,6 +11,10 @@ require_once('./dto/SectionDto.php');
 
 /**
  * Class DeptDto
+ * @property String $postCd
+ * @property String $sectionNm
+ * @property String $companyCd
+ * @property String $companyNm
  */
 class DeptDto extends SectionDto {
 
@@ -27,34 +30,58 @@ class DeptDto extends SectionDto {
     /** 会社名 */
     private $companyNm;
 
+    /**
+     * @return String
+     */
     public function getPostCd() {
         return $this->postCd;
     }
 
-    public function getSectionNm() {
-        return $this->sectionNm;
-    }
-
-    public function getCompanyCd() {
-        return $this->companyCd;
-    }
-
-    public function getCompanyNm() {
-        return $this->companyNm;
-    }
-
+    /**
+     * @param String $postCd
+     */
     public function setPostCd($postCd) {
         $this->postCd = $postCd;
     }
 
+    /**
+     * @return String
+     */
+    public function getSectionNm() {
+        return $this->sectionNm;
+    }
+
+    /**
+     * @param String $sectionNm
+     */
     public function setSectionNm($sectionNm) {
         $this->sectionNm = $sectionNm;
     }
 
+    /**
+     * @return String
+     */
+    public function getCompanyCd() {
+        return $this->companyCd;
+    }
+
+    /**
+     * @param String $companyCd
+     */
     public function setCompanyCd($companyCd) {
         $this->companyCd = $companyCd;
     }
 
+    /**
+     * @return String
+     */
+    public function getCompanyNm() {
+        return $this->companyNm;
+    }
+
+    /**
+     * @param String $companyNm
+     */
     public function setCompanyNm($companyNm) {
         $this->companyNm = $companyNm;
     }

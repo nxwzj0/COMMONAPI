@@ -11,7 +11,9 @@ require_once('./dto/CommonDto.php');
 
 /**
  * Class DeptListGetDto
- * 部門情報検索用パラメータ
+ * @property String $postCd
+ * @property String $sectionNm
+ * @property String $companyNm
  */
 class DeptListGetDto extends CommonDto {
 
@@ -24,26 +26,44 @@ class DeptListGetDto extends CommonDto {
     /** 会社名 */
     private $companyNm;
 
+    /**
+     * @return String
+     */
     public function getPostCd() {
         return $this->postCd;
     }
 
-    public function getSectionNm() {
-        return $this->sectionNm;
-    }
-
-    public function getCompanyNm() {
-        return $this->companyNm;
-    }
-
+    /**
+     * @param String $postCd
+     */
     public function setPostCd($postCd) {
         $this->postCd = $postCd;
     }
 
+    /**
+     * @return String
+     */
+    public function getSectionNm() {
+        return $this->sectionNm;
+    }
+
+    /**
+     * @param String $sectionNm
+     */
     public function setSectionNm($sectionNm) {
         $this->sectionNm = $sectionNm;
     }
 
+    /**
+     * @return String
+     */
+    public function getCompanyNm() {
+        return $this->companyNm;
+    }
+
+    /**
+     * @param String $companyNm
+     */
     public function setCompanyNm($companyNm) {
         $this->companyNm = $companyNm;
     }

@@ -11,7 +11,11 @@ require_once('./dto/SectionDto.php');
 
 /**
  * Class ProjDto
- * entity->model
+ * @property String $pjId
+ * @property String $pjNo
+ * @property String $inqNo
+ * @property String $consumerNm
+ * @property String $summaryNm
  */
 class ProjDto extends SectionDto {
 
@@ -21,42 +25,72 @@ class ProjDto extends SectionDto {
     private $consumerNm;
     private $summaryNm;
 
+    /**
+     * @return String
+     */
     public function getPjId() {
         return $this->pjId;
     }
 
-    public function getPjNo() {
-        return $this->pjNo;
-    }
-
-    public function getInqNo() {
-        return $this->inqNo;
-    }
-
-    public function getConsumerNm() {
-        return $this->consumerNm;
-    }
-
-    public function getSummaryNm() {
-        return $this->summaryNm;
-    }
-
+    /**
+     * @param String $pjId
+     */
     public function setPjId($pjId) {
         $this->pjId = $pjId;
     }
 
+    /**
+     * @return String
+     */
+    public function getPjNo() {
+        return $this->pjNo;
+    }
+
+    /**
+     * @param String $pjNo
+     */
     public function setPjNo($pjNo) {
         $this->pjNo = $pjNo;
     }
 
+    /**
+     * @return String
+     */
+    public function getInqNo() {
+        return $this->inqNo;
+    }
+
+    /**
+     * @param String $inqNo
+     */
     public function setInqNo($inqNo) {
         $this->inqNo = $inqNo;
     }
 
+    /**
+     * @return String
+     */
+    public function getConsumerNm() {
+        return $this->consumerNm;
+    }
+
+    /**
+     * @param String $consumerNm
+     */
     public function setConsumerNm($consumerNm) {
         $this->consumerNm = $consumerNm;
     }
 
+    /**
+     * @return String
+     */
+    public function getSummaryNm() {
+        return $this->summaryNm;
+    }
+
+    /**
+     * @param String $summaryNm
+     */
     public function setSummaryNm($summaryNm) {
         $this->summaryNm = $summaryNm;
     }

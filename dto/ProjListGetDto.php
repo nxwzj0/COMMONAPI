@@ -11,7 +11,10 @@ require_once('./dto/CommonDto.php');
 
 /**
  * Class ProjListGetDto
- * 情報検索用パラメータ
+ * @property String $pjNo
+ * @property String $inqNo
+ * @property String $consumerNm
+ * @property String $summaryNm
  */
 class ProjListGetDto extends CommonDto {
 
@@ -27,34 +30,58 @@ class ProjListGetDto extends CommonDto {
     /** 総括品 */
     private $summaryNm;
 
+    /**
+     * @return String
+     */
     public function getPjNo() {
         return $this->pjNo;
     }
 
-    public function getInqNo() {
-        return $this->inqNo;
-    }
-
-    public function getConsumerNm() {
-        return $this->consumerNm;
-    }
-
-    public function getSummaryNm() {
-        return $this->summaryNm;
-    }
-
+    /**
+     * @param String $pjNo
+     */
     public function setPjNo($pjNo) {
         $this->pjNo = $pjNo;
     }
 
+    /**
+     * @return String
+     */
+    public function getInqNo() {
+        return $this->inqNo;
+    }
+
+    /**
+     * @param String $inqNo
+     */
     public function setInqNo($inqNo) {
         $this->inqNo = $inqNo;
     }
 
+    /**
+     * @return String
+     */
+    public function getConsumerNm() {
+        return $this->consumerNm;
+    }
+
+    /**
+     * @param String $consumerNm
+     */
     public function setConsumerNm($consumerNm) {
         $this->consumerNm = $consumerNm;
     }
 
+    /**
+     * @return String
+     */
+    public function getSummaryNm() {
+        return $this->summaryNm;
+    }
+
+    /**
+     * @param String $summaryNm
+     */
     public function setSummaryNm($summaryNm) {
         $this->summaryNm = $summaryNm;
     }
