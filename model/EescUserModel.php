@@ -24,7 +24,7 @@ class EescUserModel extends CommonModel {
                 FROM
                     EESC_USER T1 
                 WHERE
-                    1=1
+                    NVL(T1.異動区分,' ')!='3'
 SQL_USER_INFO;
 
         if ($conditions['userNmSei'] != NULL) {

@@ -24,7 +24,9 @@ class EescSectionModel extends CommonModel {
                 FROM
                     EESC_SECTION T1 
                 WHERE
-                    1=1
+                     T1.部課内細区分職制コード IS NULL
+                    AND NVL(T1.変更区分,' ')!='3'
+                    AND T1.会社コード IS NOT NULL
 SQL_USER_INFO;
 
         if ($conditions['postCd'] != NULL) {
