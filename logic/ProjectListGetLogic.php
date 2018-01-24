@@ -9,9 +9,6 @@
 /* common */
 require_once('./logic/CommonLogic.php');
 require_once('./inc/const.php');
-require_once('./common/CommonService.php');
-require_once('./dto/SectionDto.php');
-require_once('./dto/CommonDto.php');
 /* プロジェクト */
 require_once('./model/CdosheadModel.php');
 require_once('./dto/ProjectDto.php');

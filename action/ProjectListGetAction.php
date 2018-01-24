@@ -9,8 +9,6 @@
 // 共通処理読み込み
 require_once('./action/CommonAction.php');
 // dto読み込み
-require_once('./dto/SectionDto.php');
-require_once('./dto/ProjectDto.php');
 require_once('./dto/ProjectListGetDto.php');
 require_once('./dto/ProjectListGetResultDto.php');
 // logic処理読み込み
