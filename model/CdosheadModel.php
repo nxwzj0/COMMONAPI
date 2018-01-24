@@ -11,7 +11,7 @@ require_once("./model/CommonModel.php");
 
 class CdosheadModel extends CommonModel {
 
-    public function getProjList($conditions) {
+    public function getProjectList($conditions) {
 
         $SQL_USER_INFO = <<< SQL_USER_INFO
                 SELECT 

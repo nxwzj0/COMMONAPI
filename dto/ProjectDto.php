@@ -2,33 +2,42 @@
 //*****************************************************************************
 //	システム名　　　：インシデント管理システム
 //	サブシステム名　：
-//	処理名　　　　　：ProjListGetDto
+//	処理名　　　　　：ProjectDto
 //	作成日付・作成者：2018.01.22 newtouch
 //	修正履歴　　　　：
 //*****************************************************************************
 
-require_once('./dto/CommonDto.php');
+require_once('./dto/SectionDto.php');
 
 /**
- * Class ProjListGetDto
+ * Class ProjectDto
+ * @property String $pjId
  * @property String $pjNo
  * @property String $inqNo
  * @property String $consumerNm
  * @property String $summaryNm
  */
-class ProjListGetDto extends CommonDto {
+class ProjectDto extends SectionDto {
 
-    /** PJ番号 */
+    private $pjId;
     private $pjNo;
-
-    /** INQ番号 */
     private $inqNo;
-
-    /** 最終需要家 */
     private $consumerNm;
-
-    /** 総括品 */
     private $summaryNm;
+
+    /**
+     * @return String
+     */
+    public function getPjId() {
+        return $this->pjId;
+    }
+
+    /**
+     * @param String $pjId
+     */
+    public function setPjId($pjId) {
+        $this->pjId = $pjId;
+    }
 
     /**
      * @return String

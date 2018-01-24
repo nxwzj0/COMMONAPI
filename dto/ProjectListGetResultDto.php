@@ -2,7 +2,7 @@
 //*****************************************************************************
 //	システム名　　　：インシデント管理システム
 //	サブシステム名　：
-//	処理名　　　　　：ProjListGetResultDto
+//	処理名　　　　　：ProjectListGetResultDto
 //	作成日付・作成者：2018.01.22 newtouch
 //	修正履歴　　　　：
 //*****************************************************************************
@@ -10,38 +10,38 @@
 require_once('./dto/CommonDto.php');
 
 /**
- * Class ProjListGetResultDto
+ * Class ProjectListGetResultDto
  *
- * @property ProjDto[] $projList
+ * @property ProjectDto[] $projectList
  */
-class ProjListGetResultDto extends CommonDto {
+class ProjectListGetResultDto extends CommonDto {
 
-    private $projList = array();
+    private $projectList = array();
 
     /**
-     * @return ProjDto[]
+     * @return ProjectDto[]
      */
-    public function getProjList() {
-        return $this->projList;
+    public function getProjectList() {
+        return $this->projectList;
     }
 
     /**
      * @param int $index
-     * @return ProjDto
+     * @return ProjectDto
      */
-    public function getProj($index = null) {
+    public function getProject($index = null) {
         if (is_null($index)) {
             return null;
         } else {
-            return $this->projList[$index];
+            return $this->projectList[$index];
         }
     }
 
     /**
-     * @param ProjDto $projList
+     * @param ProjectDto $projectList
      */
-    public function addProjList(ProjDto $projList) {
-        $this->projList[] = $projList;
+    public function addProjectList(ProjectDto $projectList) {
+        $this->projectList[] = $projectList;
     }
 
 }
