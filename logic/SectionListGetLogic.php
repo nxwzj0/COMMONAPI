@@ -9,6 +9,7 @@
 /* common */
 require_once('./logic/CommonLogic.php');
 require_once('./inc/const.php');
+/* section */
 require_once('./model/EescSectionModel.php');
 require_once('./dto/SectionDto.php');
 require_once('./dto/SectionListGetDto.php');
@@ -22,8 +23,6 @@ class SectionListGetLogic extends CommonLogic {
     public function execute(SectionListGetDto $sectionListGetDto) {
         // 戻りオブジェクト(SectionListGetResultDto)を作成
         $sectionListGetResultDto = new SectionListGetResultDto();
-        // CommonServiceを作成
-        $CommonService = new CommonService();
 
         // sectionListGetDtoから、パラメータを取得する、$conditionsを作成
         $conditions = array();
@@ -37,7 +36,7 @@ class SectionListGetLogic extends CommonLogic {
             $sectionList = $eescSectionModel->getSectionList($conditions);
         } catch (Exception $e) {
             // LOGIC結果　SQLエラー '1' をセット
-            $IncidentGetResultDto->setLogicResult(LOGIC_RESULT_SQL_ERROR);
+            $sectionListGetResultDto->setLogicResult(LOGIC_RESULT_SQL_ERROR);
             // 戻りオブジェクト(UserListGetResultDto)
             return $sectionListGetResultDto;
         }

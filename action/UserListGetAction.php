@@ -8,13 +8,10 @@
 //*****************************************************************************
 // 共通処理読み込み
 require_once('./action/CommonAction.php');
-
 // dto読み込み
 require_once('./dto/UserDto.php');
-require_once('./dto/SectionDto.php');
 require_once('./dto/UserListGetDto.php');
 require_once('./dto/UserListGetResultDto.php');
-
 // logic処理読み込み
 require_once('./logic/UserListGetLogic.php');
 

@@ -37,7 +37,7 @@ class ProjectListGetLogic extends CommonLogic {
             $projectList = $cdosheadModel->getProjectList($conditions);
         } catch (Exception $e) {
             // LOGIC結果　SQLエラー '1' をセット
-            $IncidentGetResultDto->setLogicResult(LOGIC_RESULT_SQL_ERROR);
+            $projectListGetResultDto->setLogicResult(LOGIC_RESULT_SQL_ERROR);
             // 戻りオブジェクト(ProjectListGetResultDto)
             return $projectListGetResultDto;
         }

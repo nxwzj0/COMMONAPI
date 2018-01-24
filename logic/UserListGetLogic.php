@@ -6,18 +6,12 @@
 //	作成日付・作成者：2018.01.09 ADF)S.Yoshida
 //	修正履歴　　　　：
 //*****************************************************************************
-
+/* common */
 require_once('./logic/CommonLogic.php');
-
-require_once('./model/EescUserModel.php');
-
-require_once('./common/CommonService.php');
-
 require_once('./inc/const.php');
-
+/* user */
+require_once('./model/EescUserModel.php');
 require_once('./dto/UserDto.php');
-require_once('./dto/SectionDto.php');
-require_once('./dto/CommonDto.php');
 require_once('./dto/UserListGetDto.php');
 require_once('./dto/UserListGetResultDto.php');
 
@@ -26,8 +20,6 @@ class UserListGetLogic extends CommonLogic {
     public function execute(UserListGetDto $userListGetDto) {
         // 戻りオブジェクト(UserListGetResultDto)を作成
         $userListGetResultDto = new UserListGetResultDto();
-        // CommonServiceを作成
-        $CommonService = new CommonService();
 
         // userListGetDtoから、パラメータを取得する、$conditionsを作成
         $conditions = array();
@@ -42,7 +34,7 @@ class UserListGetLogic extends CommonLogic {
             $userList = $eescUserModel->getUserList($conditions);
         } catch (Exception $e) {
             // LOGIC結果　SQLエラー '1' をセット
-            $IncidentGetResultDto->setLogicResult(LOGIC_RESULT_SQL_ERROR);
+            $userListGetResultDto->setLogicResult(LOGIC_RESULT_SQL_ERROR);
             // 戻りオブジェクト(UserListGetResultDto)
             return $userListGetResultDto;
         }
