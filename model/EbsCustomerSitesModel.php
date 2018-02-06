@@ -11,7 +11,7 @@
 require_once("./model/CommonModel.php");
 
 /**
- * EbsCustomerSites
+ * EbsCustomerSitesModel
  */
 class EbsCustomerSitesModel extends CommonModel {
 
@@ -26,7 +26,6 @@ class EbsCustomerSitesModel extends CommonModel {
                 WHERE
                     1 = 1
 SQL_USER_INFO;
-
 
         if ($conditions['customerCd'] != NULL) {
             $SQL_USER_INFO = $SQL_USER_INFO . " AND T1.CUST_ACCT_SITE_ID LIKE " . "'" . $conditions['customerCd'] . "%' ";
