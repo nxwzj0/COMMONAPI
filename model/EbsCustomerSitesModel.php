@@ -40,7 +40,9 @@ SQL_USER_INFO;
         if ($conditions['address'] != NULL) {
             $SQL_USER_INFO = $SQL_USER_INFO . " AND T1.ADDRESS1 LIKE " . "'%" . $conditions['address'] . "%' ";
         }
-
+		
+		$SQL_USER_INFO .= " ORDER BY T1.CUST_ACCT_SITE_ID ASC ";
+		
         $MultiExecSql = new MultiExecSql();
         $sqlResult = array();
         $MultiExecSql->getResultData($SQL_USER_INFO, $sqlResult);
