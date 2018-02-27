@@ -29,11 +29,18 @@ class SectionListGetLogic extends CommonLogic {
         $conditions['postCd'] = $sectionListGetDto->getPostCd();
         $conditions['sectionNm'] = $sectionListGetDto->getSectionNm();
         $conditions['companyNm'] = $sectionListGetDto->getCompanyNm();
+        // ::: 2018.02.27 [#41] ページング修正：部門モーダル Add Start newtouch
+        $conditions['pagingStart'] = $sectionListGetDto->getPagingStart();
+        $conditions['pagingEnd'] = $sectionListGetDto->getPagingEnd();
+        // ::: 2018.02.27 [#41] ページング修正：部門モーダル Add End   newtouch
 
         try {
             // 部門情報を取得
             $eescSectionModel = new EescSectionModel();
             $sectionList = $eescSectionModel->getSectionList($conditions);
+            // ::: 2018.02.27 [#41] ページング修正：部門モーダル Add Start newtouch
+            $sectionListCount = $eescSectionModel->getSectionListCount($conditions);
+            // ::: 2018.02.27 [#41] ページング修正：部門モーダル Add End   newtouch
         } catch (Exception $e) {
             // LOGIC結果　SQLエラー '1' をセット
             $sectionListGetResultDto->setLogicResult(LOGIC_RESULT_SQL_ERROR);
@@ -55,9 +62,15 @@ class SectionListGetLogic extends CommonLogic {
             $sectionListGetResultDto->addSectionList($sectionDto);
         }
 
+        // ::: 2018.02.27 [#41] ページング修正：部門モーダル Add Start newtouch
+        if ($sectionListCount) {
+            $sectionListGetResultDto->setCount($sectionListCount["COUNT"]);
+        }
+        // ::: 2018.02.27 [#41] ページング修正：部門モーダル Add End   newtouch
+
         // LOGIC結果　正常時 '0' をセット
         $sectionListGetResultDto->setLogicResult(LOGIC_RESULT_SEIJOU);
-        // 戻りオブジェクト(userListGetResultDto)
+        // 戻りオブジェクト(sectionListGetResultDto)
         return $sectionListGetResultDto;
     }
 

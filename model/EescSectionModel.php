@@ -15,7 +15,7 @@ require_once("./model/CommonModel.php");
 class EescSectionModel extends CommonModel {
 
     public function getSectionList($conditions) {
-        $SQL_USER_INFO = <<< SQL_USER_INFO
+        $SQL_INFO = <<< SQL_INFO
                 SELECT 
                     T1.職制コード POST_CD
                     ,T1.簡略名 SECTION_NM
@@ -27,25 +27,67 @@ class EescSectionModel extends CommonModel {
                      T1.部課内細区分職制コード IS NULL
                     AND NVL(T1.変更区分,' ')!='3'
                     AND T1.会社コード IS NOT NULL
-                    AND 職務コード != 'S'
-SQL_USER_INFO;
+                    AND NVL(T1.職務コード,' ')  != 'S'
+SQL_INFO;
 
         if ($conditions['postCd'] != NULL) {
-            $SQL_USER_INFO = $SQL_USER_INFO . " AND " . CMN_MakeLikeCond(" " . "T1.職制コード", $conditions['postCd'], "%", "%") . " ";
+            $SQL_INFO = $SQL_INFO . " AND " . CMN_MakeLikeCond(" " . "T1.職制コード", $conditions['postCd'], "%", "%") . " ";
         }
 
         if ($conditions['sectionNm'] != NULL) {
-            $SQL_USER_INFO = $SQL_USER_INFO . " AND " . CMN_MakeLikeCond(" " . "T1.簡略名", $conditions['sectionNm'], "%", "%") . " ";
+            $SQL_INFO = $SQL_INFO . " AND " . CMN_MakeLikeCond(" " . "T1.簡略名", $conditions['sectionNm'], "%", "%") . " ";
         }
 
         if ($conditions['companyNm'] != NULL) {
-            $SQL_USER_INFO = $SQL_USER_INFO . " AND " . CMN_MakeLikeCond(" " . "T1.会社名", $conditions['companyNm'], "%", "%") . " ";
+            $SQL_INFO = $SQL_INFO . " AND " . CMN_MakeLikeCond(" " . "T1.会社名", $conditions['companyNm'], "%", "%") . " ";
         }
 
-        $MultiExecSql = new MultiExecSql();
-        $sqlResult = array();
-        $MultiExecSql->getResultData($SQL_USER_INFO, $sqlResult);
-        return $sqlResult;
+        $SQL_INFO = $SQL_INFO . " ORDER BY DECODE( RTRIM('T1.職制コード'), NULL, RTRIM('T1.会社コード'), RTRIM('T1.職制コード') ) ";
+        
+        $html = "";
+        $arr = array();
+
+        $tpl = new ExecTemplate($html, $SQL_INFO);
+        $tpl->setResultDataArray($arr);
+        if ($conditions['pagingStart'] != NULL && $conditions['pagingEnd'] != NULL) {
+            $tpl->getResult($conditions['pagingStart'], $conditions['pagingEnd']); // ページング
+        } else {
+            $tpl->getResult(); // ページング無し
+        }
+        return $arr;
     }
 
+    public function getSectionListCount($conditions){
+                $SQL_INFO = <<< SQL_INFO
+                SELECT 
+                    count(*) COUNT
+                FROM
+                    EESC_SECTION T1 
+                WHERE
+                     T1.部課内細区分職制コード IS NULL
+                    AND NVL(T1.変更区分,' ')!='3'
+                    AND T1.会社コード IS NOT NULL
+                    AND NVL(T1.職務コード,' ')  != 'S'
+SQL_INFO;
+
+        if ($conditions['postCd'] != NULL) {
+            $SQL_INFO = $SQL_INFO . " AND " . CMN_MakeLikeCond(" " . "T1.職制コード", $conditions['postCd'], "%", "%") . " ";
+        }
+
+        if ($conditions['sectionNm'] != NULL) {
+            $SQL_INFO = $SQL_INFO . " AND " . CMN_MakeLikeCond(" " . "T1.簡略名", $conditions['sectionNm'], "%", "%") . " ";
+        }
+
+        if ($conditions['companyNm'] != NULL) {
+            $SQL_INFO = $SQL_INFO . " AND " . CMN_MakeLikeCond(" " . "T1.会社名", $conditions['companyNm'], "%", "%") . " ";
+        }
+
+        $html = "";
+        $arr = array();
+
+        $tpl = new ExecTemplate($html, $SQL_INFO);
+        $tpl->setResultDataArray($arr);
+        $tpl->getResult(); // ページング無し
+        return $arr[0];
+    }
 }

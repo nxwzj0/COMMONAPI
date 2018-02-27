@@ -7,7 +7,7 @@
 //	修正履歴　　　　：
 //*****************************************************************************
 
-require_once('./dto/CommonDto.php');
+require_once('./dto/PagingDto.php');
 
 /**
  * Class SectionListGetDto
@@ -15,7 +15,7 @@ require_once('./dto/CommonDto.php');
  * @property String $sectionNm
  * @property String $companyNm
  */
-class SectionListGetDto extends CommonDto {
+class SectionListGetDto extends PagingDto {
 
     /** 職制コード */
     private $postCd;

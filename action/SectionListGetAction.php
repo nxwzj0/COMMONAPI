@@ -27,6 +27,10 @@ class SectionListGetAction extends CommonAction {
         $sectionListGetDto->setPostCd($P['postCd']);
         $sectionListGetDto->setSectionNm($P['sectionNm']);
         $sectionListGetDto->setCompanyNm($P['companyNm']);
+        // ::: 2018.02.27 [#41] ページング修正：部門モーダル Add Start newtouch
+        $sectionListGetDto->setPagingStart($P['pagingStart']);
+        $sectionListGetDto->setPagingEnd($P['pagingEnd']);
+        // ::: 2018.02.27 [#41] ページング修正：部門モーダル Add End   newtouch
 
         /* ロジック処理 */
         $sectionListGetLogic = new SectionListGetLogic();
@@ -44,7 +48,12 @@ class SectionListGetAction extends CommonAction {
 
         // 戻り値の作成
         if ($eventResult && $eventResult->getLogicResult() == LOGIC_RESULT_SEIJOU) {
-            array_push($sectionListAry, array("result" => true));
+            // ::: 2018.02.27 [#41] ページング修正：部門モーダル Del Start newtouch
+            // ::: array_push($sectionListAry, array("result" => true));
+            // ::: 2018.02.27 [#41] ページング修正：部門モーダル Del End   newtouch
+            // ::: 2018.02.27 [#41] ページング修正：部門モーダル Add Start newtouch
+            $sectionListAry[] = array("result" => true, "count" => $eventResult->getCount());
+            // ::: 2018.02.27 [#41] ページング修正：部門モーダル Add End   newtouch
 
             if ($eventResult->getSectionList() && is_array($eventResult->getSectionList()) && count($eventResult->getSectionList()) > 0) {
                 foreach ($eventResult->getSectionList() as $section) {
@@ -55,11 +64,22 @@ class SectionListGetAction extends CommonAction {
                     $sectionAry["sectionNm"] = $section->getSectionNm();
                     $sectionAry["companyNm"] = $section->getCompanyNm();
                     // 1件分の情報をセット
-                    array_push($sectionListAry, $sectionAry);
+                    // ::: 2018.02.27 [#41] ページング修正：部門モーダル Del Start newtouch
+                    // ::: array_push($sectionListAry, $sectionAry);
+                    // ::: 2018.02.27 [#41] ページング修正：部門モーダル Del End   newtouch
+                    // ::: 2018.02.27 [#41] ページング修正：部門モーダル Add Start newtouch
+                    $sectionListAry[] = $sectionAry;
+                    // ::: 2018.02.27 [#41] ページング修正：部門モーダル Add End   newtouch
+
                 }
             }
         } else {
-            array_push($sectionListAry, array("result" => false));
+            // ::: 2018.02.27 [#41] ページング修正：部門モーダル Del Start newtouch
+            // :::             array_push($sectionListAry, array("result" => false));
+            // ::: 2018.02.27 [#41] ページング修正：部門モーダル Del End   newtouch
+            // ::: 2018.02.27 [#41] ページング修正：部門モーダル Add Start newtouch
+            $sectionListAry[] = array("result" => false);
+            // ::: 2018.02.27 [#41] ページング修正：部門モーダル Add End   newtouch
         }
 
         return $sectionListAry;

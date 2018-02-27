@@ -13,10 +13,12 @@ require_once('./dto/CommonDto.php');
  * Class SectionListGetResultDto
  *
  * @property SectionDto[] $sectionList
+ * @property String $count
  */
 class SectionListGetResultDto extends CommonDto {
 
     private $sectionList = array();
+    private $count;
 
     /**
      * @return SectionDto[]
@@ -44,4 +46,17 @@ class SectionListGetResultDto extends CommonDto {
         $this->sectionList[] = $sectionList;
     }
 
+    /**
+     * @return String
+     */
+    public function getCount() {
+        return $this->count;
+    }
+
+    /**
+     * @param String $count
+     */
+    public function setCount($count) {
+        $this->count = $count;
+    }
 }
