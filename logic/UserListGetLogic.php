@@ -10,7 +10,7 @@
 require_once('./logic/CommonLogic.php');
 require_once('./inc/const.php');
 /* user */
-require_once('./model/EescUserModel.php');
+require_once('./model/OEescUserModel.php');
 require_once('./dto/UserDto.php');
 require_once('./dto/UserListGetDto.php');
 require_once('./dto/UserListGetResultDto.php');
@@ -30,8 +30,8 @@ class UserListGetLogic extends CommonLogic {
 
         try {
             // ユーザ情報を取得
-            $eescUserModel = new EescUserModel();
-            $userList = $eescUserModel->getUserList($conditions);
+            $oEescUserModel = new OEescUserModel();
+            $userList = $oEescUserModel->getUserList($conditions);
         } catch (Exception $e) {
             // LOGIC結果　SQLエラー '1' をセット
             $userListGetResultDto->setLogicResult(LOGIC_RESULT_SQL_ERROR);

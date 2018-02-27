@@ -13,7 +13,7 @@ class CdosheadModel extends CommonModel {
 
     public function getProjectList($conditions) {
 
-        $SQL_USER_INFO = <<< SQL_USER_INFO
+        $SQL_PJ_INFO = <<< SQL_PJ_INFO
                 SELECT 
                     T1.物件番号  PJ_ID
                     ,T1.ＯＳ番号	 PJ_NO
@@ -24,32 +24,81 @@ class CdosheadModel extends CommonModel {
                     CDOSHEAD T1 
                 WHERE
                     1=1
-SQL_USER_INFO;
+SQL_PJ_INFO;
 
         // ＯＳ番号(PJ番号)
         if ($conditions['pjNo'] != NULL) {
-            $SQL_USER_INFO = $SQL_USER_INFO . " AND T1.ＯＳ番号 LIKE " . "'%" . $conditions['pjNo'] . "%' ";
+            $SQL_PJ_INFO = $SQL_PJ_INFO . " AND " . CMN_MakeLikeCond(" " . "T1.ＯＳ番号", $conditions['pjNo'], "%", "%") . " ";
         }
 
         // ＩＮＱ番号
         if ($conditions['inqNo'] != NULL) {
-            $SQL_USER_INFO = $SQL_USER_INFO . " AND T1.ＩＮＱ番号 LIKE " . "'%" . $conditions['inqNo'] . "%' ";
+            $SQL_PJ_INFO = $SQL_PJ_INFO . " AND " . CMN_MakeLikeCond(" " . "T1.ＩＮＱ番号", $conditions['inqNo'], "%", "%") . " ";
         }
 
         // 最終需要家名
         if ($conditions['consumerNm'] != NULL) {
-            $SQL_USER_INFO = $SQL_USER_INFO . " AND T1.最終需要家名 LIKE " . "'%" . $conditions['consumerNm'] . "%' ";
+            $SQL_PJ_INFO = $SQL_PJ_INFO . " AND " . CMN_MakeLikeCond(" " . "T1.最終需要家名", $conditions['consumerNm'], "%", "%") . " ";
         }
 
         // 工事件名（総括品）
         if ($conditions['summaryNm'] != NULL) {
-            $SQL_USER_INFO = $SQL_USER_INFO . " AND T1.工事件名 LIKE " . "'%" . $conditions['summaryNm'] . "%' ";
+            $SQL_PJ_INFO = $SQL_PJ_INFO . " AND " . CMN_MakeLikeCond(" " . "T1.工事件名", $conditions['summaryNm'], "%", "%") . " ";
         }
 
-        $MultiExecSql = new MultiExecSql();
-        $sqlResult = array();
-        $MultiExecSql->getResultData($SQL_USER_INFO, $sqlResult);
-        return $sqlResult;
+        $SQL_PJ_INFO = $SQL_PJ_INFO . " ORDER BY DECODE( RTRIM('T1.ＯＳ番号'), NULL, RTRIM('T1.ＩＮＱ番号'), RTRIM('T1.ＯＳ番号') ) ";
+
+        $html = "";
+        $arr = array();
+
+        $tpl = new ExecTemplate($html, $SQL_PJ_INFO);
+        $tpl->setResultDataArray($arr);
+        if ($conditions['pagingStart'] != NULL && $conditions['pagingEnd'] != NULL) {
+            $tpl->getResult($conditions['pagingStart'], $conditions['pagingEnd']); // ページング
+        } else {
+            $tpl->getResult(); // ページング無し
+        }
+        return $arr;
+    }
+
+    public function getProjectListCount($conditions) {
+
+        $SQL_PJ_INFO = <<< SQL_PJ_INFO
+                SELECT 
+                    count(*) COUNT
+                FROM
+                    CDOSHEAD T1 
+                WHERE
+                    1=1
+SQL_PJ_INFO;
+
+        // ＯＳ番号(PJ番号)
+        if ($conditions['pjNo'] != NULL) {
+            $SQL_PJ_INFO = $SQL_PJ_INFO . " AND " . CMN_MakeLikeCond(" " . "T1.ＯＳ番号", $conditions['pjNo'], "%", "%") . " ";
+        }
+
+        // ＩＮＱ番号
+        if ($conditions['inqNo'] != NULL) {
+            $SQL_PJ_INFO = $SQL_PJ_INFO . " AND " . CMN_MakeLikeCond(" " . "T1.ＩＮＱ番号", $conditions['inqNo'], "%", "%") . " ";
+        }
+
+        // 最終需要家名
+        if ($conditions['consumerNm'] != NULL) {
+            $SQL_PJ_INFO = $SQL_PJ_INFO . " AND " . CMN_MakeLikeCond(" " . "T1.最終需要家名", $conditions['consumerNm'], "%", "%") . " ";
+        }
+
+        // 工事件名（総括品）
+        if ($conditions['summaryNm'] != NULL) {
+            $SQL_PJ_INFO = $SQL_PJ_INFO . " AND " . CMN_MakeLikeCond(" " . "T1.工事件名", $conditions['summaryNm'], "%", "%") . " ";
+        }
+
+        $html = "";
+        $arr = array();
+
+        $tpl = new ExecTemplate($html, $SQL_PJ_INFO);
+        $tpl->setResultDataArray($arr);
+        $tpl->getResult(); // ページング無し
+        return $arr[0];
     }
 
 }

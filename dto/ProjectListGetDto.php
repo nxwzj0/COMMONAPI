@@ -7,7 +7,7 @@
 //	修正履歴　　　　：
 //*****************************************************************************
 
-require_once('./dto/CommonDto.php');
+require_once('./dto/PagingDto.php');
 
 /**
  * Class ProjectListGetDto
@@ -16,7 +16,7 @@ require_once('./dto/CommonDto.php');
  * @property String $consumerNm
  * @property String $summaryNm
  */
-class ProjectListGetDto extends CommonDto {
+class ProjectListGetDto extends PagingDto {
 
     /** PJ番号 */
     private $pjNo;

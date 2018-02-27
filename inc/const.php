@@ -206,3 +206,8 @@ serialize(array(
     '4' => '技術',
     '5' => 'その他'
 )));
+
+// 費用決裁申請分類名
+define('HIYO_KESSAI_TYPE_NAME_SHOUGAI','障害対応');
+define('HIYO_KESSAI_TYPE_NAME_CLAME','クレーム対応');
+

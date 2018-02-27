@@ -1,2 +1,0 @@
-# COMMONAPI
-PHP angularJs  INCIDENT 联动

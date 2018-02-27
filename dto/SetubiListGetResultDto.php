@@ -2,48 +2,48 @@
 //*****************************************************************************
 //	システム名　　　：インシデント管理システム
 //	サブシステム名　：
-//	処理名　　　　　：ProjectListGetResultDto
-//	作成日付・作成者：2018.01.22 newtouch
+//	処理名　　　　　：SetubiListGetResultDto
+//	作成日付・作成者：2018.02.19 ADF)S.Yoshida
 //	修正履歴　　　　：
 //*****************************************************************************
 
 require_once('./dto/CommonDto.php');
 
 /**
- * Class ProjectListGetResultDto
+ * Class SetubiListGetResultDto
  *
- * @property ProjectDto[] $projectList
+ * @property SetubiDto[] $setubiList
  * @property String $count
  */
-class ProjectListGetResultDto extends CommonDto {
+class SetubiListGetResultDto extends CommonDto {
 
-    private $projectList = array();
+    private $setubiList = array();
     private $count;
 
     /**
-     * @return ProjectDto[]
+     * @return SetubiDto[]
      */
-    public function getProjectList() {
-        return $this->projectList;
+    public function getSetubiList() {
+        return $this->setubiList;
     }
 
     /**
      * @param int $index
-     * @return ProjectDto
+     * @return SetubiDto
      */
-    public function getProject($index = null) {
+    public function getSetubi($index = null) {
         if (is_null($index)) {
             return null;
         } else {
-            return $this->projectList[$index];
+            return $this->setubiList[$index];
         }
     }
 
     /**
-     * @param ProjectDto $project
+     * @param SetubiDto $setubi
      */
-    public function addProjectList(ProjectDto $project) {
-        $this->projectList[] = $project;
+    public function addSetubiList(SetubiDto $setubi) {
+        $this->setubiList[] = $setubi;
     }
 
     /**

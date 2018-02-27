@@ -30,11 +30,14 @@ class ProjectListGetLogic extends CommonLogic {
         $conditions['inqNo'] = $projectListGetDto->getInqNo();
         $conditions['consumerNm'] = $projectListGetDto->getConsumerNm();
         $conditions['summaryNm'] = $projectListGetDto->getSummaryNm();
+        $conditions['pagingStart'] = $projectListGetDto->getPagingStart();
+        $conditions['pagingEnd'] = $projectListGetDto->getPagingEnd();
 
         try {
             // プロジェクト情報を取得
             $cdosheadModel = new CdosheadModel();
             $projectList = $cdosheadModel->getProjectList($conditions);
+            $projectListCount = $cdosheadModel->getProjectListCount($conditions);
         } catch (Exception $e) {
             // LOGIC結果　SQLエラー '1' をセット
             $projectListGetResultDto->setLogicResult(LOGIC_RESULT_SQL_ERROR);
@@ -55,6 +58,10 @@ class ProjectListGetLogic extends CommonLogic {
             $projectDto->setSummaryNm($projectData["SUMMARY_NM"]);
             // ProjectDto⇒ProjectListGetResultDtoのセット
             $projectListGetResultDto->addProjectList($projectDto);
+        }
+
+        if ($projectListCount) {
+            $projectListGetResultDto->setCount($projectListCount["COUNT"]);
         }
 
         // LOGIC結果　正常時 '0' をセット

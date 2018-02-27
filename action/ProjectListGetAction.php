@@ -28,6 +28,8 @@ class ProjectListGetAction extends CommonAction {
         $projectListGetDto->setInqNo($P['inqNo']);
         $projectListGetDto->setConsumerNm($P['consumerNm']);
         $projectListGetDto->setSummaryNm($P['summaryNm']);
+        $projectListGetDto->setPagingStart($P['pagingStart']);
+        $projectListGetDto->setPagingEnd($P['pagingEnd']);
 
         /* ロジック処理 */
         $projectListGetLogic = new ProjectListGetLogic();
@@ -45,9 +47,9 @@ class ProjectListGetAction extends CommonAction {
 
         // 戻り値の作成
         if ($eventResult && $eventResult->getLogicResult() == LOGIC_RESULT_SEIJOU) {
-            array_push($projectListAry, array("result" => true));
+            $projectListAry[] = array("result" => true, "count" => $eventResult->getCount());
 
-            if ($eventResult->getProjectList() && is_array($eventResult->getProjectList()) && count($eventResult->getProjectList()) > 0) {
+            if (is_array($eventResult->getProjectList()) && count($eventResult->getProjectList()) > 0) {
                 foreach ($eventResult->getProjectList() as $project) {
                     $projectAry = array();
 
@@ -58,11 +60,11 @@ class ProjectListGetAction extends CommonAction {
                     $projectAry["consumerNm"] = $project->getConsumerNm();
                     $projectAry["summaryNm"] = $project->getSummaryNm();
                     // 1件分の情報をセット
-                    array_push($projectListAry, $projectAry);
+                    $projectListAry[] = $projectAry;
                 }
             }
         } else {
-            array_push($projectListAry, array("result" => false));
+            $projectListAry[] = array("result" => false);
         }
 
         return $projectListAry;

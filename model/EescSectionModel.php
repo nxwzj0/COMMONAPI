@@ -27,18 +27,19 @@ class EescSectionModel extends CommonModel {
                      T1.部課内細区分職制コード IS NULL
                     AND NVL(T1.変更区分,' ')!='3'
                     AND T1.会社コード IS NOT NULL
+                    AND 職務コード != 'S'
 SQL_USER_INFO;
 
         if ($conditions['postCd'] != NULL) {
-            $SQL_USER_INFO = $SQL_USER_INFO . " AND T1.職制コード LIKE " . "'%" . $conditions['postCd'] . "%' ";
+            $SQL_USER_INFO = $SQL_USER_INFO . " AND " . CMN_MakeLikeCond(" " . "T1.職制コード", $conditions['postCd'], "%", "%") . " ";
         }
 
         if ($conditions['sectionNm'] != NULL) {
-            $SQL_USER_INFO = $SQL_USER_INFO . " AND T1.簡略名 LIKE " . "'%" . $conditions['sectionNm'] . "%' ";
+            $SQL_USER_INFO = $SQL_USER_INFO . " AND " . CMN_MakeLikeCond(" " . "T1.簡略名", $conditions['sectionNm'], "%", "%") . " ";
         }
 
         if ($conditions['companyNm'] != NULL) {
-            $SQL_USER_INFO = $SQL_USER_INFO . " AND T1.会社名 LIKE " . "'%" . $conditions['companyNm'] . "%' ";
+            $SQL_USER_INFO = $SQL_USER_INFO . " AND " . CMN_MakeLikeCond(" " . "T1.会社名", $conditions['companyNm'], "%", "%") . " ";
         }
 
         $MultiExecSql = new MultiExecSql();

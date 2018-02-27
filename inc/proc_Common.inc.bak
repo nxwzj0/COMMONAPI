@@ -268,10 +268,10 @@ function CMN_MakeMultiKeywordsCond($keywords,$and_or,$cond_str){
 //cond_str=SQLの条件式 例："to_multi_byte(name) like to_multi_byte('%[WORD]%')"、"upper(to_multi_byte(name)) like upper(to_multi_byte('%[WORD]%'))"
 
 	$escape = "\\";
-	$keywords = preg_replace("/%/u",$escape."%",$keywords);
-	$keywords = preg_replace("/％/u",$escape."％",$keywords);
-	$keywords = preg_replace("/_/u",$escape."_",$keywords);
-	$keywords = preg_replace("/＿/u",$escape."＿",$keywords);
+	$keywords = preg_replace("/%/",$escape."%",$keywords);
+	$keywords = preg_replace("/％/",$escape."％",$keywords);
+	$keywords = preg_replace("/_/",$escape."_",$keywords);
+	$keywords = preg_replace("/＿/",$escape."＿",$keywords);
 	$cond_str = $cond_str . " escape '$escape'";
 
 	$ary_words = array();
@@ -280,16 +280,16 @@ function CMN_MakeMultiKeywordsCond($keywords,$and_or,$cond_str){
 		$tmp = mb_substr($keywords,$i,1);
 		$tmp_keywords .= $tmp=="　" ? " " : $tmp;
 	}
-	$ary_tmp = preg_split("/ /u",$tmp_keywords);
+	$ary_tmp = preg_split("/ /",$tmp_keywords);
 	foreach( $ary_tmp as $val ){
 		$ary_tmp2 = array();
 		//全て全角
-		$tmp = mb_convert_kana($val,"KVA", "UTF-8");
-		$ary_tmp2[]=$tmp;
+		$tmp = mb_convert_kana($val,"KVA");
+		array_push($ary_tmp2,$tmp);
 		//半角カナ以外全角
-		$tmp2 = mb_convert_kana($tmp,"k", "UTF-8");
-		if( $tmp != $tmp2 ) $ary_tmp2[]= $tmp2;
-		$ary_words[]= $ary_tmp2;
+		$tmp2 = mb_convert_kana($tmp,"k");
+		if( $tmp != $tmp2 ) array_push($ary_tmp2,$tmp2);
+		array_push($ary_words,$ary_tmp2);
 	}
 	if( $and_or == 0 ) $andor = "and"; else $andor = "or";
 	$tmp = "";
@@ -298,7 +298,7 @@ function CMN_MakeMultiKeywordsCond($keywords,$and_or,$cond_str){
 		$tmp2 = "";
 		foreach( $ary as $val ){
 			$tmp2 .= strlen($tmp2) ? "\n\tor\n" : "";
-			$tmp2 .= "\t".preg_replace("/\[WORD\]/u",$val,$cond_str);
+			$tmp2 .= "\t".preg_replace("/\[WORD\]/",$val,$cond_str);
 		}
 		$tmp .= "\t(\n$tmp2\n\t)";
 	}

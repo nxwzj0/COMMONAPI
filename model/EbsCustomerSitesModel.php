@@ -18,8 +18,8 @@ class EbsCustomerSitesModel extends CommonModel {
     public function getCustomerList($conditions) {
         $SQL_USER_INFO = <<< SQL_USER_INFO
                 SELECT 
-                    T1.CUST_ACCT_SITE_ID AS CUSTOMER_CD
-                    ,T1.FORMAL_CUST_NAME_1 ||' '||T1.FORMAL_CUST_NAME_2 AS CUSTOMER_NM
+                    T1.CUST_ACCOUNT_ID AS CUSTOMER_CD
+                    ,T1.FORMAL_CUST_NAME_1 ||' '||T1.FORMAL_CUST_NAME_2 ||' '||T1.FORMAL_CUST_NAME_3 AS CUSTOMER_NM
                     ,T1.ADDRESS1 AS ADDRESS
                 FROM
                     EBS_CUSTOMER_SITES T1 
@@ -28,21 +28,21 @@ class EbsCustomerSitesModel extends CommonModel {
 SQL_USER_INFO;
 
         if ($conditions['customerCd'] != NULL) {
-            $SQL_USER_INFO = $SQL_USER_INFO . " AND T1.CUST_ACCT_SITE_ID LIKE " . "'" . $conditions['customerCd'] . "%' ";
+            $SQL_USER_INFO = $SQL_USER_INFO . " AND " . CMN_MakeLikeCond(" " . "T1.CUST_ACCT_SITE_ID", $conditions['customerCd'], "", "%") . " ";
         }
 
         if ($conditions['customerNm'] != NULL) {
-            $SQL_USER_INFO = $SQL_USER_INFO . " AND( T1.FORMAL_CUST_NAME_1 LIKE " . "'%" . $conditions['customerNm'] . "%' ";
-            $SQL_USER_INFO = $SQL_USER_INFO . " OR T1.FORMAL_CUST_NAME_2 LIKE " . "'%" . $conditions['customerNm'] . "%' ";
-            $SQL_USER_INFO = $SQL_USER_INFO . " OR T1.FORMAL_CUST_NAME_3 LIKE " . "'%" . $conditions['customerNm'] . "%' )";
+            $SQL_USER_INFO = $SQL_USER_INFO . " AND( " . CMN_MakeLikeCond(" " . "T1.FORMAL_CUST_NAME_1", $conditions['customerNm'], "%", "%") . " ";
+            $SQL_USER_INFO = $SQL_USER_INFO . " OR " . CMN_MakeLikeCond(" " . "T1.FORMAL_CUST_NAME_2", $conditions['customerNm'], "%", "%") . " ";
+            $SQL_USER_INFO = $SQL_USER_INFO . " OR " . CMN_MakeLikeCond(" " . "T1.FORMAL_CUST_NAME_3", $conditions['customerNm'], "%", "%") . " ) ";
         }
 
         if ($conditions['address'] != NULL) {
-            $SQL_USER_INFO = $SQL_USER_INFO . " AND T1.ADDRESS1 LIKE " . "'%" . $conditions['address'] . "%' ";
+            $SQL_USER_INFO = $SQL_USER_INFO . " AND " . CMN_MakeLikeCond(" " . "T1.ADDRESS1", $conditions['address'], "%", "%") . " ";
         }
-		
-		$SQL_USER_INFO .= " ORDER BY T1.CUST_ACCT_SITE_ID ASC ";
-		
+
+        $SQL_USER_INFO .= " ORDER BY T1.CUST_ACCT_SITE_ID ASC ";
+
         $MultiExecSql = new MultiExecSql();
         $sqlResult = array();
         $MultiExecSql->getResultData($SQL_USER_INFO, $sqlResult);
