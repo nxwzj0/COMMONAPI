@@ -7,7 +7,7 @@
 //	修正履歴　　　　：
 //*****************************************************************************
 
-require_once('./dto/CommonDto.php');
+require_once('./dto/PagingDto.php');
 
 /**
  * Class UserListGetDto
@@ -17,7 +17,7 @@ require_once('./dto/CommonDto.php');
  * @property String $sectionCd
  * @property String $sectionNm
  */
-class UserListGetDto extends CommonDto{
+class UserListGetDto extends PagingDto{
     private $userNmSei;
     private $userNmMei;
     private $sectionCd;

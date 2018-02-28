@@ -35,6 +35,10 @@ class UserListGetAction extends CommonAction {
         $userListGetDto->setUserNmMei($userNmMei);
         $userListGetDto->setSectionCd($sectionCd);
         $userListGetDto->setSectionNm($sectionNm);
+        // ::: 2018.02.28 [#42] ページング修正：ユーザモーダル Add Start newtouch
+        $userListGetDto->setPagingStart($P['pagingStart']);
+        $userListGetDto->setPagingEnd($P['pagingEnd']);
+        // ::: 2018.02.28 [#42] ページング修正：ユーザモーダル Add End   newtouch
 
         /* ロジック処理 */
         $userListGetLogic = new UserListGetLogic();
@@ -52,7 +56,12 @@ class UserListGetAction extends CommonAction {
         
         // 戻り値の作成
         if ($eventResult && $eventResult->getLogicResult() == LOGIC_RESULT_SEIJOU) {
-            array_push($userListAry, array("result" => true));
+            // ::: 2018.02.28 [#42] ページング修正：ユーザモーダル Del Start newtouch
+            // ::: array_push($userListAry, array("result" => true));
+            // ::: 2018.02.28 [#42] ページング修正：ユーザモーダル Del End   newtouch
+            // ::: 2018.02.28 [#42] ページング修正：ユーザモーダル Add Start newtouch
+            $userListAry[] = array("result" => true, "count" => $eventResult->getCount());
+            // ::: 2018.02.28 [#42] ページング修正：ユーザモーダル Add End   newtouch
             
             if ($eventResult->getUserList() && is_array($eventResult->getUserList()) && count($eventResult->getUserList()) > 0) {
                 foreach ($eventResult->getUserList() as $user) {
@@ -68,12 +77,22 @@ class UserListGetAction extends CommonAction {
                     $userAry["postNm"] = $user->getPostNm();
 
                     // 1件分の情報をセット
-                    array_push($userListAry, $userAry);
+                    // ::: 2018.02.28 [#42] ページング修正：ユーザモーダル Del Start newtouch
+                    // ::: array_push($userListAry, $userAry);
+                    // ::: 2018.02.28 [#42] ページング修正：ユーザモーダル Del End   newtouch
+                    // ::: 2018.02.28 [#42] ページング修正：ユーザモーダル Add Start newtouch
+                    $userListAry[] = $userAry;
+                    // ::: 2018.02.28 [#42] ページング修正：ユーザモーダル Add End   newtouch
                 }
             }
             
         } else {
-            array_push($userListAry, array("result" => false));
+            // ::: 2018.02.28 [#42] ページング修正：ユーザモーダル Del Start newtouch
+            // ::: array_push($userListAry, array("result" => false));
+            // ::: 2018.02.28 [#42] ページング修正：ユーザモーダル Del End   newtouch
+            // ::: 2018.02.28 [#42] ページング修正：ユーザモーダル Add Start newtouch
+            $userListAry[] = array("result" => false);
+            // ::: 2018.02.28 [#42] ページング修正：ユーザモーダル Add End   newtouch
         }
         
         return $userListAry;
