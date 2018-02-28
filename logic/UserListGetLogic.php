@@ -27,11 +27,18 @@ class UserListGetLogic extends CommonLogic {
         $conditions['userNmMei'] = $userListGetDto->getUserNmMei();
         $conditions['sectionCd'] = $userListGetDto->getSectionCd();
         $conditions['sectionNm'] = $userListGetDto->getSectionNm();
+        // ::: 2018.02.28 [#42] ページング修正：ユーザモーダル Add Start newtouch
+        $conditions['pagingStart'] = $userListGetDto->getPagingStart();
+        $conditions['pagingEnd'] = $userListGetDto->getPagingEnd();
+        // ::: 2018.02.28 [#42] ページング修正：ユーザモーダル Add End   newtouch
 
         try {
             // ユーザ情報を取得
             $oEescUserModel = new OEescUserModel();
             $userList = $oEescUserModel->getUserList($conditions);
+            // ::: 2018.02.28 [#42] ページング修正：ユーザモーダル Add Start newtouch
+            $userListCount = $oEescUserModel->getUserListCount($conditions);
+            // ::: 2018.02.28 [#42] ページング修正：ユーザモーダル Add End   newtouch
         } catch (Exception $e) {
             // LOGIC結果　SQLエラー '1' をセット
             $userListGetResultDto->setLogicResult(LOGIC_RESULT_SQL_ERROR);
@@ -57,6 +64,12 @@ class UserListGetLogic extends CommonLogic {
             $userListGetResultDto->addUserList($userDto);
         }
 
+        // ::: 2018.02.28 [#42] ページング修正：ユーザモーダル Add Start newtouch
+        if ($userListCount) {
+            $userListGetResultDto->setCount($userListCount["COUNT"]);
+        }
+        // ::: 2018.02.28 [#42] ページング修正：ユーザモーダル Add End   newtouch
+        
         // LOGIC結果　正常時 '0' をセット
         $userListGetResultDto->setLogicResult(LOGIC_RESULT_SEIJOU);
         // 戻りオブジェクト(userListGetResultDto)

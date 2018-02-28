@@ -13,6 +13,7 @@ require_once('./dto/CommonDto.php');
  * Class UserListGetDto
  *
  * @property UserDto[] $userList
+ * @property String $count
  */
 class UserListGetResultDto extends CommonDto{
 
@@ -44,4 +45,17 @@ class UserListGetResultDto extends CommonDto{
         $this->userList[] = $userList;
     }
  
+    /**
+     * @return String
+     */
+    public function getCount() {
+        return $this->count;
+    }
+
+    /**
+     * @param String $count
+     */
+    public function setCount($count) {
+        $this->count = $count;
+    }
 }
