@@ -43,10 +43,49 @@ SQL_USER_INFO;
 
         $SQL_USER_INFO .= " ORDER BY T1.CUST_ACCT_SITE_ID ASC ";
 
-        $MultiExecSql = new MultiExecSql();
-        $sqlResult = array();
-        $MultiExecSql->getResultData($SQL_USER_INFO, $sqlResult);
-        return $sqlResult;
+        $html = "";
+        $arr = array();
+
+        $tpl = new ExecTemplate($html, $SQL_USER_INFO);
+        $tpl->setResultDataArray($arr);
+        if ($conditions['pagingStart'] != NULL && $conditions['pagingEnd'] != NULL) {
+            $tpl->getResult($conditions['pagingStart'], $conditions['pagingEnd']); // ページング
+        } else {
+            $tpl->getResult(); // ページング無し
+        }
+        return $arr;
     }
 
+    public function getCustomerListCount($conditions){
+        $SQL_USER_INFO = <<< SQL_USER_INFO
+                SELECT 
+                    count(*) COUNT
+                FROM
+                    EBS_CUSTOMER_SITES T1 
+                WHERE
+                    1 = 1
+SQL_USER_INFO;
+
+        if ($conditions['customerCd'] != NULL) {
+            $SQL_USER_INFO = $SQL_USER_INFO . " AND " . CMN_MakeLikeCond(" " . "T1.CUST_ACCT_SITE_ID", $conditions['customerCd'], "", "%") . " ";
+        }
+
+        if ($conditions['customerNm'] != NULL) {
+            $SQL_USER_INFO = $SQL_USER_INFO . " AND( " . CMN_MakeLikeCond(" " . "T1.FORMAL_CUST_NAME_1", $conditions['customerNm'], "%", "%") . " ";
+            $SQL_USER_INFO = $SQL_USER_INFO . " OR " . CMN_MakeLikeCond(" " . "T1.FORMAL_CUST_NAME_2", $conditions['customerNm'], "%", "%") . " ";
+            $SQL_USER_INFO = $SQL_USER_INFO . " OR " . CMN_MakeLikeCond(" " . "T1.FORMAL_CUST_NAME_3", $conditions['customerNm'], "%", "%") . " ) ";
+        }
+
+        if ($conditions['address'] != NULL) {
+            $SQL_USER_INFO = $SQL_USER_INFO . " AND " . CMN_MakeLikeCond(" " . "T1.ADDRESS1", $conditions['address'], "%", "%") . " ";
+        }
+
+        $html = "";
+        $arr = array();
+
+        $tpl = new ExecTemplate($html, $SQL_USER_INFO);
+        $tpl->setResultDataArray($arr);
+        $tpl->getResult(); // ページング無し
+        return $arr[0];
+    }
 }

@@ -18,6 +18,7 @@ require_once('./dto/CommonDto.php');
 class UserListGetResultDto extends CommonDto{
 
     private $userList = array();
+    private $count;
  
      /**
      * @return UserDto[]

@@ -8,7 +8,7 @@
 //	修正履歴　　　　：
 //*****************************************************************************
 
-require_once('./dto/CommonDto.php');
+require_once('./dto/PagingDto.php');
 
 /**
  * Class CustomerListGetDto
@@ -16,7 +16,7 @@ require_once('./dto/CommonDto.php');
  * @property String $customerNm
  * @property String $address
  */
-class CustomerListGetDto extends CommonDto {
+class CustomerListGetDto extends PagingDto {
 
     /** 顧客コード */
     private $customerCd;

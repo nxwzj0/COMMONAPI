@@ -31,11 +31,20 @@ class CustomerListGetLogic extends CommonLogic {
         $conditions['customerCd'] = $conditionDto->getCustomerCd();
         $conditions['customerNm'] = $conditionDto->getCustomerNm();
         $conditions['address'] = $conditionDto->getAddress();
+        // ::: 2018.03.01 [#43] ページング修正：顧客モーダル Add Start newtouch
+        $conditions['pagingStart'] = $conditionDto->getPagingStart();
+        $conditions['pagingEnd'] = $conditionDto->getPagingEnd();
+        // ::: 2018.03.01 [#43] ページング修正：顧客モーダル Add End   newtouch
+
 
         try {
             // 部門情報を取得
             $model = new EbsCustomerSitesModel();
             $customerList = $model->getCustomerList($conditions);
+            // ::: 2018.03.01 [#43] ページング修正：顧客モーダル Add Start newtouch
+            $customerListCount = $model->getCustomerListCount($conditions);
+            // ::: 2018.03.01 [#43] ページング修正：顧客モーダル Add End   newtouch
+
         } catch (Exception $e) {
             // LOGIC結果　SQLエラー '1' をセット
             $resultDto->setLogicResult(LOGIC_RESULT_SQL_ERROR);
@@ -56,6 +65,12 @@ class CustomerListGetLogic extends CommonLogic {
             $resultDto->addCustomerList($customerDto);
         }
 
+        // ::: 2018.03.01 [#43] ページング修正：顧客モーダル Add Start newtouch
+        if ($customerListCount) {
+            $resultDto->setCount($customerListCount["COUNT"]);
+        }
+        // ::: 2018.03.01 [#43] ページング修正：顧客モーダル Add End   newtouch
+        
         // LOGIC結果　正常時 '0' をセット
         $resultDto->setLogicResult(LOGIC_RESULT_SEIJOU);
         // 戻りオブジェクト(userListGetResultDto)

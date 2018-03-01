@@ -28,6 +28,10 @@ class CustomerListGetAction extends CommonAction {
         $conditionDto->setCustomerCd($P['customerCd']);
         $conditionDto->setCustomerNm($P['customerNm']);
         $conditionDto->setAddress($P['address']);
+        // ::: 2018.03.01 [#43] ページング修正：顧客モーダル Add Start newtouch
+        $conditionDto->setPagingStart($P['pagingStart']);
+        $conditionDto->setPagingEnd($P['pagingEnd']);
+        // ::: 2018.03.01 [#43] ページング修正：顧客モーダル Add End   newtouch
 
         /* ロジック処理 */
         $logic = new CustomerListGetLogic();
@@ -45,7 +49,12 @@ class CustomerListGetAction extends CommonAction {
 
         // 戻り値の作成
         if ($eventResult && $eventResult->getLogicResult() == LOGIC_RESULT_SEIJOU) {
-            array_push($customerListAry, array("result" => true));
+            // ::: 2018.03.01 [#43] ページング修正：顧客モーダル Del Start newtouch
+            // ::: array_push($customerListAry, array("result" => true));
+            // ::: 2018.03.01 [#43] ページング修正：顧客モーダル Del End   newtouch
+            // ::: 2018.03.01 [#43] ページング修正：顧客モーダル Add Start newtouch
+            $customerListAry[] = array("result" => true, "count" => $eventResult->getCount());
+            // ::: 2018.03.01 [#43] ページング修正：顧客モーダル Add End   newtouch
 
             if ($eventResult->getCustomerList() && is_array($eventResult->getCustomerList()) && count($eventResult->getCustomerList()) > 0) {
                 foreach ($eventResult->getCustomerList() as $customer) {
@@ -56,11 +65,21 @@ class CustomerListGetAction extends CommonAction {
                     $customerAry["customerNm"] = $customer->getCustomerNm();
                     $customerAry["address"] = $customer->getAddress();
                     // 1件分の情報をセット
-                    array_push($customerListAry, $customerAry);
+                    // ::: 2018.03.01 [#43] ページング修正：顧客モーダル Del Start newtouch
+                    // ::: array_push($customerListAry, $customerAry);
+                    // ::: 2018.03.01 [#43] ページング修正：顧客モーダル Del End   newtouch
+                    // ::: 2018.03.01 [#43] ページング修正：顧客モーダル Add Start newtouch
+                    $customerListAry[] = $customerAry;
+                    // ::: 2018.03.01 [#43] ページング修正：顧客モーダル Add End   newtouch
                 }
             }
         } else {
-            array_push($customerListAry, array("result" => false));
+            // ::: 2018.03.01 [#43] ページング修正：顧客モーダル Del Start newtouch
+            // ::: array_push($customerListAry, array("result" => false));
+            // ::: 2018.03.01 [#43] ページング修正：顧客モーダル Del End   newtouch
+            // ::: 2018.03.01 [#43] ページング修正：顧客モーダル Add Start newtouch
+            $customerListAry[] = array("result" => false);
+            // ::: 2018.03.01 [#43] ページング修正：顧客モーダル Add End   newtouch
         }
 
         return $customerListAry;
