@@ -85,7 +85,7 @@ SQL_USER_INFO;
         return $arr;
     }
 
-    public function getUserListCount($conditions){
+        public function getUserListCount($conditions){
                 $SQL_USER_INFO = <<< SQL_USER_INFO
                 SELECT 
                     count(*) COUNT

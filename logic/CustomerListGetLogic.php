@@ -18,7 +18,6 @@ require_once('./dto/CustomerListGetResultDto.php');
 
 /**
  * CustomerListGetLogic
- * EbsCustomerSites
  */
 class CustomerListGetLogic extends CommonLogic {
 
@@ -36,9 +35,8 @@ class CustomerListGetLogic extends CommonLogic {
         $conditions['pagingEnd'] = $conditionDto->getPagingEnd();
         // ::: 2018.03.01 [#43] ページング修正：顧客モーダル Add End   newtouch
 
-
         try {
-            // 部門情報を取得
+            // 取引先情報を取得
             $model = new EbsCustomerSitesModel();
             $customerList = $model->getCustomerList($conditions);
             // ::: 2018.03.01 [#43] ページング修正：顧客モーダル Add Start newtouch
@@ -52,12 +50,12 @@ class CustomerListGetLogic extends CommonLogic {
             return $resultDto;
         }
 
-        // 個数分部門情報リストをループ
+        // 個数分取引先情報リストをループ
         foreach ($customerList as $customerData) {
             // customerDtoを作成
             $customerDto = new CustomerDto();
 
-            // 部門情報の取得
+            // 取引先情報の取得
             $customerDto->setCustomerCd($customerData["CUSTOMER_CD"]);
             $customerDto->setCustomerNm($customerData["CUSTOMER_NM"]);
             $customerDto->setAddress($customerData["ADDRESS"]);

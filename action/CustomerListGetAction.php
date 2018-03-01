@@ -24,7 +24,7 @@ class CustomerListGetAction extends CommonAction {
         $P = $GLOBALS[P]; // 共通パラメータ配列取得
         /* Dto作成処理 */
         $conditionDto = new CustomerListGetDto();
-        // 部門情報検索用パラメータ
+        // 取引先情報検索用パラメータ
         $conditionDto->setCustomerCd($P['customerCd']);
         $conditionDto->setCustomerNm($P['customerNm']);
         $conditionDto->setAddress($P['address']);
