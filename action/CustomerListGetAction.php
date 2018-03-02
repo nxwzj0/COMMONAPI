@@ -60,7 +60,7 @@ class CustomerListGetAction extends CommonAction {
                 foreach ($eventResult->getCustomerList() as $customer) {
                     $customerAry = array();
 
-                    // 部門情報
+                    // 顧客情報
                     $customerAry["customerCd"] = $customer->getCustomerCd();
                     $customerAry["customerNm"] = $customer->getCustomerNm();
                     $customerAry["address"] = $customer->getAddress();
